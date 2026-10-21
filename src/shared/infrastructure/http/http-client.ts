@@ -7,7 +7,8 @@ export class HttpError extends Error {
   constructor(
     public readonly status: number,
     public readonly statusText: string,
-    public readonly url: string
+    public readonly url: string,
+    public readonly data?: unknown
   ) {
     super(`HTTP ${status} ${statusText} — ${url}`)
     this.name = 'HttpError'
@@ -21,19 +22,40 @@ export interface HttpRequestOptions extends Omit<RequestInit, 'body'> {
 
 async function request<T>(url: string, options: HttpRequestOptions = {}): Promise<T> {
   const { timeout = 10_000, body, headers, ...rest } = options
+  const method = (rest.method || 'GET').toUpperCase()
+
+  const requestHeaders = {
+    'Content-Type': 'application/json',
+    ...headers,
+  }
+
+  // Log outgoing API request details (method, URL, headers, and body)
+  console.log(`[HTTP Request] ${method} ${url}`, {
+    headers: requestHeaders,
+    body: body !== undefined ? body : null,
+  })
 
   const res = await fetch(url, {
     ...rest,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
+    headers: requestHeaders,
     body: body !== undefined ? JSON.stringify(body) : undefined,
     signal: AbortSignal.timeout(timeout),
   })
 
   if (!res.ok) {
-    throw new HttpError(res.status, res.statusText, url)
+    let errorData: unknown
+    try {
+      errorData = await res.json()
+    } catch {
+      // ignore
+    }
+
+    console.warn(`[HTTP Response Error] ${method} ${url} -> ${res.status} ${res.statusText}`, {
+      status: res.status,
+      errorData,
+    })
+
+    throw new HttpError(res.status, res.statusText, url, errorData)
   }
 
   if (res.status === 204) return undefined as T
