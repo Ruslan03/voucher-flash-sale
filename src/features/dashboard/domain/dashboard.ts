@@ -25,7 +25,7 @@ export interface OwnedCoupon {
   expiresAt: string
 }
 export interface DashboardSnapshot {
-  mode: 'preview'
+  mode: 'preview' | 'live'
   fetchedAt: string
   session: SaleSession
   user: { phone: string; tier: string }

@@ -20,7 +20,12 @@ export function DashboardView({ initialResult }: { initialResult: ActionResult<D
   const [category, setCategory] = useState<DashboardCategory | 'all'>('all')
   const [scenario, setScenario] = useState<SessionStatus>('upcoming')
   const [selection, setSelection] = useState<CouponSelection>()
-  const [notice, setNotice] = useState('Mode preview: data dan pembelian hanya simulasi lokal. Refresh akan mengulang demo.')
+  const isLive = snapshot?.mode === 'live'
+  const [notice, setNotice] = useState(
+    isLive
+      ? 'Flash Sale PromoRush sedang berlangsung. Kuota terbatas maks. 1 kupon per kategori!'
+      : 'Mode preview: data dan pembelian hanya simulasi lokal. Refresh akan mengulang demo.'
+  )
   const [error, setError] = useState(initialResult.success ? '' : 'Dashboard belum dapat dimuat. Silakan coba lagi.')
   const deviceNow = useDashboardClock(snapshot ? Date.parse(snapshot.fetchedAt) : 0)
 
@@ -42,6 +47,12 @@ export function DashboardView({ initialResult }: { initialResult: ActionResult<D
   const status = getSessionStatus(snapshot.session, now)
 
   function confirmPurchase(id: string) {
+    if (snapshot?.mode === 'live') {
+      const offer = snapshot.offers.find(item => item.id === id)
+      setSelection(undefined)
+      setNotice(`Voucher ${offer?.merchant || ''} dipilih. Silakan lanjutkan ke tahap checkout pembayaran.`)
+      return
+    }
     const result = previewPurchaseController(snapshot!, id, now)
     if (result.success) {
       setSnapshot(result.data.snapshot); setSelection(undefined); setError('')
@@ -65,6 +76,6 @@ export function DashboardView({ initialResult }: { initialResult: ActionResult<D
       }} />
     </main>
     <DashboardFooter status={status} />
-    {selection && <CouponDialog selection={selection} onClose={() => setSelection(undefined)} onConfirm={confirmPurchase} />}
+    {selection && <CouponDialog selection={selection} mode={snapshot.mode} onClose={() => setSelection(undefined)} onConfirm={confirmPurchase} />}
   </div>
 }

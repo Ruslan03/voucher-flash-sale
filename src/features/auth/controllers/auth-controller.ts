@@ -64,6 +64,13 @@ export async function verifyOtpAction(
         maxAge: result.expiresIn,
         path: '/',
       })
+      cookieStore.set('customer_phone', phone, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: result.expiresIn,
+        path: '/',
+      })
     } catch {
       // Allow execution in test or non-cookie contexts
     }
