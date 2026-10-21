@@ -42,6 +42,10 @@ async function request<T>(url: string, options: HttpRequestOptions = {}): Promis
     signal: AbortSignal.timeout(timeout),
   })
 
+  console.log(`[HTTP Response] ${method} ${url}`, {
+    body: await res.json(),
+  })
+
   if (!res.ok) {
     let errorData: unknown
     try {
