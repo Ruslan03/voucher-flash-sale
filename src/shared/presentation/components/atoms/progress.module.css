@@ -1,0 +1,4 @@
+.bar { display: block; width: 100%; height: .375rem; border: 0; border-radius: 999px; overflow: hidden; appearance: none; background: var(--color-surface-container); color: var(--primary-flash); }
+.bar::-webkit-progress-bar { background: var(--color-surface-container); border-radius: 999px; }
+.bar::-webkit-progress-value { background: linear-gradient(to right, var(--category-food), var(--primary-flash)); border-radius: 999px; }
+.bar::-moz-progress-bar { background: var(--primary-flash); border-radius: 999px; }

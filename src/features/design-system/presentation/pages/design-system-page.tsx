@@ -8,6 +8,9 @@ import { FormField } from '@/shared/presentation/components/molecules/form-field
 import { PhoneNumberField } from '@/shared/presentation/components/molecules/phone-number-field'
 import { VoucherPreview } from '@/shared/presentation/components/molecules/voucher-preview'
 import './design-system.css'
+import { OtpInputDemo } from '../components/otp-input-demo'
+import { CategoryFilterDemo } from '../components/category-filter-demo'
+import { Progress } from '@/shared/presentation/components/atoms/progress'
 
 const navigation = [
   ['foundations', '01', 'Foundations'],
@@ -26,7 +29,7 @@ const palette = [
 ] as const
 
 const iconNames: IconName[] = ['bolt', 'verified', 'schedule', 'local_fire_department',
-  'timelapse', 'flash_on', 'restaurant', 'checkroom', 'devices', 'redeem', 'smartphone', 'info', 'arrow_forward']
+  'timelapse', 'flash_on', 'restaurant', 'checkroom', 'devices', 'redeem', 'smartphone', 'info', 'arrow_forward', 'arrow_back', 'lock']
 
 function Section({ id, number, title, description, children }: {
   id: string; number: string; title: string; description: string; children: ReactNode
@@ -78,7 +81,7 @@ export function DesignSystemPage() {
             <Badge className="ds-hero-badge"><span className="ds-status-dot" />VIBRANT FLASH COMMERCE</Badge>
             <h1 id="ds-title">Built for the rush.<br /><span>Designed to connect.</span></h1>
             <p>The building blocks behind PromoRush. Explore the foundations, reusable atoms, and composed molecules that keep every screen connected.</p>
-            <div className="ds-hero-meta"><span><strong>04</strong> atoms</span><span><strong>03</strong> molecules</span><span><Icon name="bolt" />Atomic Design</span></div>
+            <div className="ds-hero-meta"><span><strong>05</strong> atoms</span><span><strong>05</strong> molecules</span><span><Icon name="bolt" />Atomic Design</span></div>
           </section>
 
           <Section id="foundations" number="01" title="Foundations" description="The visual language behind every component. Shared tokens, consistent decisions.">
@@ -129,6 +132,10 @@ export function DesignSystemPage() {
                 <div className="ds-badge-examples"><Badge className="ds-demo-badge ds-demo-badge--red"><Icon name="bolt" />Flash sale</Badge><Badge className="ds-demo-badge ds-demo-badge--navy"><Icon name="verified" />Verified platform</Badge><Badge className="ds-demo-badge ds-demo-badge--orange">90% OFF</Badge><Badge className="ds-demo-badge ds-demo-badge--blue"><Icon name="schedule" />12:00–12:15 WIB</Badge></div>
               </Specimen>
             </div>
+            <Specimen name="Progress" description="Native progress with dynamic value/max attributes and an accessible label. No inline styles."
+              code={'import { Progress } from \'@/shared/presentation/components/atoms/progress\'\n\n<Progress value={68} max={100} aria-label="Kuota terpakai" />'}>
+              <Progress value={68} max={100} aria-label="Kuota terpakai" />
+            </Specimen>
             <Specimen name="Icon" description="Material Symbols Outlined, bundled locally. Decorative by default; supply label for standalone meaning."
               code={'import { Icon } from \'@/shared/presentation/components/atoms/icon\'\n\n<Icon name="bolt" />\n<Icon name="verified" label="Verified platform" />'}>
               <div className="ds-icon-grid">{iconNames.map(name => <div key={name}><Icon name={name} className="text-[28px]" /><code>{name}</code></div>)}</div>
@@ -146,6 +153,14 @@ export function DesignSystemPage() {
                 <div className="ds-stack"><PhoneNumberField id="ds-phone" label="Mobile phone number" hint="We’ll send a verification code to this number." /><PhoneNumberField id="ds-phone-error" label="With validation error" defaultValue="123" error="Check your mobile number." /></div>
               </Specimen>
             </div>
+            <Specimen name="CategoryFilter" description="Generic filter buttons with controlled state and aria-pressed. Filtering data belongs to the caller."
+              code={'<CategoryFilter value={category} onChange={setCategory}\n  options={[{ value: \'all\', label: \'Semua Kupon\', icon: \'confirmation_number\' }]} />'}>
+              <CategoryFilterDemo />
+            </Specimen>
+            <Specimen name="OtpInput" description="Controlled digit boxes with paste, autofill, automatic focus, and keyboard navigation. Verification stays in the feature."
+              code={'import { OtpInput } from \'@/shared/presentation/components/molecules/otp-input\'\n\nconst [digits, setDigits] = useState<string[]>(Array(6).fill(\'\'))\n<OtpInput id="code" value={digits} onChange={setDigits}\n  label="6-Digit Security Code" />'}>
+              <OtpInputDemo />
+            </Specimen>
             <Specimen name="VoucherPreview" description="Display-only content with three category tones. The caller supplies formatted prices and promotional copy."
               code={'<VoucherPreview merchant="Kopi Kenangan" promotion="90% OFF"\n  originalPrice="Rp50,000" price="Rp5,000"\n  icon="restaurant" tone="food" />'}>
               <div className="ds-voucher-grid">

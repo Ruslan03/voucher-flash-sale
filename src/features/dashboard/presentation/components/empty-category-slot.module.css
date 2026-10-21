@@ -1,0 +1,13 @@
+.slot { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: 1.25rem; min-height: 15rem; border: 2px dashed var(--color-surface-container-high); border-radius: 1rem; background: #ecf5fe66; text-align: center; --accent: var(--category-food); --tint: #fff2e9; }
+.slot[data-category='fashion'] { --accent: var(--category-fashion); --tint: #fdf0f6; }
+.slot[data-category='electronics'] { --accent: var(--category-electronics); --tint: #edf5ff; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; color: var(--color-secondary); font-size: 10px; font-weight: 700; }
+.top b { padding: .125rem .5rem; color: #047857; background: #ecfdf5; border-radius: .25rem; }
+.content { display: grid; justify-items: center; gap: .375rem; }
+.mark { display: grid; place-items: center; width: 3rem; height: 3rem; border: 1px solid color-mix(in srgb, var(--accent) 25%, white); border-radius: .75rem; color: var(--accent); background: var(--tint); }
+.icon { font-size: 26px; }
+.content h3 { font-size: 14px; font-weight: 700; }
+.content p { max-width: 15rem; color: var(--color-secondary); font-size: 11px; line-height: 1.6; }
+.choose { display: flex; align-items: center; justify-content: center; gap: .25rem; padding: .5rem; border: 1px solid #aa001966; border-radius: .5rem; background: white; color: var(--color-primary); font-size: 12px; font-weight: 700; text-decoration: none; }
+.choose:focus-visible { outline: 2px solid var(--primary-flash); outline-offset: 3px; }
+.smallIcon { font-size: 14px; }

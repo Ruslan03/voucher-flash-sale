@@ -1,0 +1,15 @@
+.dialog { width: min(28rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); overflow-y: auto; margin: auto; padding: 2rem; border: 1px solid var(--border-default); border-radius: 1rem; background: white; color: var(--secondary-navy); box-shadow: 0 24px 80px rgb(20 33 61 / .25); }
+.dialog::backdrop { background: rgb(20 33 61 / .6); }
+.close { position: absolute; top: .75rem; right: .75rem; display: grid; place-items: center; width: 2rem; height: 2rem; cursor: pointer; border-radius: .5rem; }
+.close:hover { background: var(--surface-muted); }
+.close:focus-visible { outline: 2px solid var(--primary-flash); }
+.preview { display: inline-block; padding: .25rem .5rem; border-radius: .25rem; background: #fff1f2; color: var(--primary-flash); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.dialog h2 { font-size: 22px; font-weight: 800; line-height: 1.3; margin: 1rem 0 .5rem; }
+.dialog h3 { font-size: 16px; font-weight: 600; }
+.summary { display: grid; gap: .75rem; margin: 1.5rem 0; }
+.summary > div { display: flex; justify-content: space-between; gap: .75rem; font-size: 13px; }
+.summary dt { color: var(--color-secondary); }
+.summary dd { font-weight: 700; }
+.notice { color: var(--color-secondary); font-size: 12px; line-height: 1.75; }
+.confirm { width: 100%; margin-top: 1.25rem; }
+.code { padding: 1rem; margin: 1rem 0; border: 1px dashed #10b981; border-radius: .75rem; color: #047857; background: #ecfdf5; font-family: monospace; font-size: 18px; font-weight: 700; text-align: center; overflow-wrap: anywhere; }

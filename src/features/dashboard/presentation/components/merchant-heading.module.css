@@ -1,0 +1,10 @@
+.heading { display: flex; align-items: center; gap: .625rem; --accent: var(--category-food); --tint: #fff2e9; }
+.heading[data-category='fashion'] { --accent: var(--category-fashion); --tint: #fdf0f6; }
+.heading[data-category='electronics'] { --accent: var(--category-electronics); --tint: #edf5ff; }
+.mark { display: grid; place-items: center; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border: 1px solid color-mix(in srgb, var(--accent) 25%, white); border-radius: .5rem; background: var(--tint); color: var(--accent); }
+.icon { font-size: 22px; }
+.text { min-width: 0; }
+.name { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; }
+.name h3 { font-size: 14px; line-height: 1.25; font-weight: 700; color: var(--color-on-surface); }
+.name > span { font-size: 10px; padding: .125rem .375rem; border-radius: .25rem; color: var(--accent); background: var(--tint); font-weight: 700; }
+.text > p { font-size: 11px; color: var(--color-secondary); margin-top: .125rem; }

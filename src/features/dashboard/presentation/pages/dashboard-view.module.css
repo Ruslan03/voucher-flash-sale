@@ -1,0 +1,11 @@
+.page { display: flex; flex-direction: column; min-height: 100vh; background: var(--color-surface); color: var(--secondary-navy); font-family: var(--font-plus-jakarta), sans-serif; }
+.main { display: flex; flex-direction: column; gap: 2rem; width: 100%; max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+.notice { margin-top: -1rem; margin-bottom: -1rem; font-size: 11px; line-height: 1.75; color: var(--color-secondary); }
+.error { padding: .75rem 1rem; border: 1px solid #fda4af; border-radius: .75rem; background: #fff1f2; color: #9f1239; font-size: 13px; }
+.fallback { display: grid; justify-content: center; align-content: center; gap: 1rem; min-height: 60vh; padding: 2rem; text-align: center; }
+.fallback h1 { font-size: 24px; font-weight: 800; }
+.fallback p { color: var(--color-secondary); font-size: 14px; }
+.fallback button { padding: .75rem 1.25rem; border-radius: .75rem; color: white; background: var(--primary-flash); cursor: pointer; }
+.skip { position: fixed; top: -100px; left: 1rem; z-index: 30; background: white; padding: .75rem; border: 2px solid var(--primary-flash); border-radius: .5rem; }
+.skip:focus { top: 1rem; }
+@media (max-width: 40rem) { .main { padding: 1rem 1rem 2rem; gap: 1.5rem; } .notice { margin-top: -.5rem; margin-bottom: -.5rem; } }

@@ -12,7 +12,9 @@ const symbols = localFont({
 
 export type IconName = 'bolt' | 'verified' | 'schedule' | 'local_fire_department' |
   'timelapse' | 'flash_on' | 'restaurant' | 'checkroom' | 'devices' | 'redeem' |
-  'smartphone' | 'info' | 'arrow_forward'
+  'smartphone' | 'info' | 'arrow_forward' | 'arrow_back' | 'lock' | 'local_cafe' |
+  'styler' | 'headphones' | 'fastfood' | 'expand_more' | 'confirmation_number' |
+  'task_alt' | 'receipt_long' | 'add_circle' | 'arrow_downward' | 'timer' | 'close'
 
 type IconProps = Omit<ComponentProps<'span'>, 'children'> & { name: IconName; label?: string }
 

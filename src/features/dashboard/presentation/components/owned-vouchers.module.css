@@ -1,0 +1,10 @@
+.section { border: 1px solid #10b98166; border-radius: 1rem; background: white; padding: 1.25rem; scroll-margin-top: 6rem; }
+.header { padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--color-surface-container-high); }
+.title { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; }
+.mark { width: 2rem; height: 2rem; display: grid; place-items: center; border: 1px solid #a7f3d0; border-radius: .5rem; background: #ecfdf5; color: #059669; }
+.icon { font-size: 20px; }
+.title h2 { font-size: 20px; font-weight: 800; color: var(--color-on-surface); letter-spacing: -.02em; }
+.count { padding: .125rem .5rem; border: 1px solid #a7f3d0; border-radius: 999px; background: #d1fae5; color: #065f46; font-size: 11px; font-weight: 700; }
+.header > p { margin-top: .375rem; color: var(--color-secondary); font-size: 12px; }
+.slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+@media (max-width: 50rem) { .slots { grid-template-columns: 1fr; } }

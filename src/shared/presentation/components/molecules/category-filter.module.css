@@ -1,0 +1,7 @@
+.filters { display: flex; align-items: center; gap: .5rem; overflow-x: auto; padding-bottom: .25rem; }
+.filter { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; gap: .375rem; padding: .625rem .875rem; border: 1px solid var(--color-surface-container-high); border-radius: .75rem; background: white; color: var(--color-secondary); font-size: 12px; font-weight: 600; cursor: pointer; transition: background 150ms; }
+.filter[aria-pressed='true'] { border-color: var(--primary-flash); background: var(--primary-flash); color: white; font-weight: 700; }
+.filter:hover { box-shadow: 0 2px 4px rgb(20 33 61 / .08); }
+.filter:focus-visible { outline: 2px solid var(--primary-flash); outline-offset: 2px; }
+.icon { font-size: 16px; }
+@media (prefers-reduced-motion: reduce) { .filter { transition: none; } }

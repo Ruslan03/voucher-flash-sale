@@ -3,10 +3,17 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it, vi } from 'vitest'
 import { Button } from './components/atoms/button'
 import { PhoneNumberField } from './components/molecules/phone-number-field'
+import { Progress } from './components/atoms/progress'
 
 vi.mock('next/font/local', () => ({ default: () => ({ className: 'test-icons' }) }))
 
 describe('shared presentation contracts', () => {
+  it('preserves native progress values and an accessible label', () => {
+    const html = renderToStaticMarkup(<Progress value={68} max={100} aria-label="Kuota terpakai" />)
+    expect(html).toContain('value="68"')
+    expect(html).toContain('max="100"')
+    expect(html).toContain('aria-label="Kuota terpakai"')
+  })
   it('defaults buttons to non-submit and forwards native accessibility attributes', () => {
     const html = renderToStaticMarkup(<Button disabled aria-describedby="status">Send OTP</Button>)
     expect(html).toContain('type="button"')

@@ -1,0 +1,10 @@
+.catalog { display: grid; gap: 1.25rem; scroll-margin-top: 6rem; }
+.header h2 { color: var(--color-on-surface); font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1.5; }
+.header h2 > span { display: inline-block; vertical-align: middle; margin-left: .5rem; padding: .125rem .5rem; border-radius: .25rem; font-size: 11px; font-weight: 600; letter-spacing: 0; background: var(--color-surface-container-high); color: var(--color-secondary); }
+.header p { font-size: 12px; line-height: 1.75; color: var(--color-secondary); }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.empty { display: grid; gap: .5rem; text-align: center; padding: 3rem 1rem; border: 1px dashed var(--border-active); border-radius: 1rem; background: white; }
+.empty h3 { font-size: 16px; font-weight: 700; }
+.empty p { font-size: 13px; color: var(--color-secondary); }
+@media (max-width: 60rem) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 40rem) { .grid { grid-template-columns: 1fr; } .header h2 { font-size: 18px; } }

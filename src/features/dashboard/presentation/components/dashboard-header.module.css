@@ -1,0 +1,28 @@
+.announcement { background: var(--secondary-navy); color: white; padding: .25rem 2rem; font-size: 12px; border-bottom: 1px solid #293138; }
+.announcementInner { max-width: 1136px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; }
+.announcementInner p { display: flex; align-items: center; gap: .5rem; }
+.kilat { background: var(--primary-flash); color: white; padding: .125rem .375rem; border-radius: .25rem; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.announcementText { color: #cbd5e1; }
+.clock { display: inline-flex; align-items: center; gap: .375rem; color: #fcd34d; background: #0d1b36; padding: .125rem .5rem; border: 1px solid #334155; border-radius: .25rem; }
+.clock time { font-variant-numeric: tabular-nums; font-weight: 700; }
+.clockIcon { font-size: 14px; }
+.header { position: sticky; top: 0; z-index: 10; background: white; border-bottom: 1px solid var(--color-surface-container-high); box-shadow: 0 1px 3px rgb(20 33 61 / .05); }
+.inner { max-width: 1200px; margin: auto; min-height: 4rem; padding: .75rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.brand { display: inline-flex; align-items: center; gap: .625rem; text-decoration: none; }
+.brandMark { width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: var(--primary-flash); color: white; display: grid; place-items: center; }
+.brandIcon { font-size: 26px; }
+.brand strong { display: block; color: var(--color-primary); font-size: 20px; font-weight: 900; line-height: 1.25; letter-spacing: -.025em; }
+.brand small { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--color-secondary); }
+.account { display: flex; align-items: center; gap: .5rem; }
+.avatar { border: 2px solid var(--color-primary); border-radius: 50%; padding: 2px; object-fit: cover; }
+.user strong { display: flex; align-items: center; gap: .25rem; font-size: 12px; }
+.user small { font-size: 11px; color: var(--color-secondary); }
+.verified { color: var(--category-electronics); font-size: 14px; }
+.menu { position: relative; }
+.menu summary { display: grid; place-items: center; list-style: none; padding: .25rem; cursor: pointer; border-radius: .25rem; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu nav { position: absolute; top: 2rem; right: 0; display: grid; gap: .25rem; width: 12rem; background: white; border: 1px solid var(--border-default); border-radius: .75rem; padding: .5rem; box-shadow: 0 10px 25px rgb(20 33 61 / .15); }
+.menu a { padding: .625rem; font-size: 12px; text-decoration: none; }
+.menu a:hover { background: var(--surface-muted); border-radius: .5rem; }
+.menu summary:focus-visible, .menu a:focus-visible, .brand:focus-visible { outline: 2px solid var(--primary-flash); outline-offset: 3px; }
+@media (max-width: 40rem) { .announcement { padding: .375rem 1rem; } .announcementText { display: none; } .inner { padding: .75rem 1rem; } .user { display: none; } .clock { font-size: 10px; } }
