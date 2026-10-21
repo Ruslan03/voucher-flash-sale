@@ -1,21 +1,18 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { RootProvider } from '@/composition/store/provider'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-plus-jakarta',
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Voucher Flash Sale — Architecture Skeleton',
-  description: 'Next.js App Router with Feature-Driven Development and Clean Architecture',
+  title: 'Voucher Flash Sale — Vibrant Flash Commerce',
+  description: 'High-velocity Indonesian flash-sale marketplace built with Next.js Clean Architecture',
 }
 
 export default function RootLayout({
@@ -25,10 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="id"
+      className={`${plusJakartaSans.variable} font-sans h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-full flex flex-col bg-[#f8f9fa] text-[#14213d] font-sans">
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

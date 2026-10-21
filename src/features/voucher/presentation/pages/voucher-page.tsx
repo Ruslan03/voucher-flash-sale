@@ -9,178 +9,83 @@ interface VoucherPageProps {
 export async function VoucherPage({ id }: VoucherPageProps) {
   const repo = createVoucherRepository()
   const vouchers = await getVouchers(repo)
-  const data = id ? await getVoucherById(repo, id) : vouchers[0]
+  const sampleVoucher = id ? await getVoucherById(repo, id) : vouchers[0]
 
   return (
     <main
       data-testid="voucher-starter-screen"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-        padding: '2rem 1.5rem',
-        backgroundColor: '#0a0a0a',
-        color: '#ededed',
-        boxSizing: 'border-box',
-      }}
+      className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--surface-muted)] text-[var(--secondary-navy)]"
     >
-      <div style={{ maxWidth: '640px', width: '100%', textAlign: 'center' }}>
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.25rem 0.85rem',
-            borderRadius: '9999px',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            fontSize: '0.85rem',
-            color: '#a1a1aa',
-            marginBottom: '1.25rem',
-          }}
-        >
-          <span>⚡</span>
-          <span>Clean Architecture &bull; Feature Ready</span>
+      <div className="max-w-2xl w-full text-center space-y-6">
+        {/* Ticker Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--canvas-base)] border border-[var(--border-default)] shadow-[var(--shadow-deal-resting)]">
+          <span className="text-[#d70324] font-black text-sm">⚡</span>
+          <span className="label-caps text-[var(--secondary-navy)] font-bold">
+            Vibrant Flash Commerce &bull; Clean Architecture
+          </span>
         </div>
 
-        <h1
-          style={{
-            fontSize: '2.25rem',
-            fontWeight: 700,
-            margin: '0 0 0.75rem',
-            letterSpacing: '-0.025em',
-          }}
-        >
-          Feature <span style={{ color: '#38bdf8' }}>Voucher</span>
-        </h1>
+        {/* Headline */}
+        <div>
+          <h1 className="display-hero text-[var(--secondary-navy)] tracking-tight">
+            Feature <span className="text-[var(--primary-flash)]">Voucher</span>
+          </h1>
+          <p className="body-md text-[var(--neutral-core)] mt-2 max-w-lg mx-auto">
+            Design system <strong>Vibrant Flash Commerce</strong> aktif dengan font <strong>Plus Jakarta Sans</strong>. Gunakan panduan arsitektur di bawah untuk mengimplementasikan fitur.
+          </p>
+        </div>
 
-        <p
-          style={{
-            fontSize: '1rem',
-            color: '#a1a1aa',
-            margin: '0 0 2rem',
-            lineHeight: 1.5,
-          }}
-        >
-          Kerangka arsitektur terpasang. Gunakan petunjuk di bawah untuk mengimplementasikan logika bisnis dan UI.
-        </p>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '0.85rem',
-            textAlign: 'left',
-            marginBottom: '2rem',
-          }}
-        >
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '0.75rem',
-              padding: '1rem',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.75rem',
-                color: '#38bdf8',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-            >
-              1. Domain
+        {/* 4 Architectural Layers Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-left">
+          <div className="card-deal p-4">
+            <span className="label-caps text-[var(--primary-flash)] font-bold">
+              1. Domain Layer
             </span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Atur entity model &amp; aturan bisnis di <code>src/features/voucher/domain/</code>
+            <p className="body-sm text-[var(--secondary-navy)] font-medium mt-1">
+              Atur model entitas &amp; aturan bisnis di <code className="text-xs bg-[var(--surface-subtle)] px-1.5 py-0.5 rounded font-mono">domain/voucher.ts</code>
             </p>
           </div>
 
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '0.75rem',
-              padding: '1rem',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.75rem',
-                color: '#38bdf8',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-            >
-              2. Use Cases
+          <div className="card-deal p-4">
+            <span className="label-caps text-[var(--primary-flash)] font-bold">
+              2. Use Cases Layer
             </span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Definisikan kontrak port &amp; use case di <code>src/features/voucher/use-cases/</code>
+            <p className="body-sm text-[var(--secondary-navy)] font-medium mt-1">
+              Kontrak port <code className="text-xs bg-[var(--surface-subtle)] px-1.5 py-0.5 rounded font-mono">voucher-repository.ts</code> &amp; use cases di <code className="text-xs bg-[var(--surface-subtle)] px-1.5 py-0.5 rounded font-mono">use-cases/</code>
             </p>
           </div>
 
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '0.75rem',
-              padding: '1rem',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.75rem',
-                color: '#38bdf8',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-            >
+          <div className="card-deal p-4">
+            <span className="label-caps text-[var(--primary-flash)] font-bold">
               3. Infrastructure
             </span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Implementasi API / Database adapters di <code>src/features/voucher/infrastructure/</code>
+            <p className="body-sm text-[var(--secondary-navy)] font-medium mt-1">
+              Implementasi API / In-Memory adapters di <code className="text-xs bg-[var(--surface-subtle)] px-1.5 py-0.5 rounded font-mono">infrastructure/</code>
             </p>
           </div>
 
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '0.75rem',
-              padding: '1rem',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.75rem',
-                color: '#38bdf8',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-            >
+          <div className="card-deal p-4">
+            <span className="label-caps text-[var(--primary-flash)] font-bold">
               4. Controllers
             </span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Server Actions penghubung UI di <code>src/features/voucher/controllers/</code>
+            <p className="body-sm text-[var(--secondary-navy)] font-medium mt-1">
+              Server Actions penghubung UI di <code className="text-xs bg-[var(--surface-subtle)] px-1.5 py-0.5 rounded font-mono">controllers/voucher-controller.ts</code>
             </p>
           </div>
         </div>
 
-        <div
-          style={{
-            padding: '0.75rem 1rem',
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '0.5rem',
-            fontSize: '0.85rem',
-            color: '#a1a1aa',
-          }}
-        >
-          Status Entity: <strong style={{ color: '#34d399' }}>Active</strong> &bull; Sample: <code>{data ? data.title : 'Ready'}</code> &bull; Total: <code>{vouchers.length} Items</code>
+        {/* Active Data Connection Banner */}
+        <div className="p-3.5 rounded-xl bg-[var(--canvas-base)] border border-[var(--border-default)] shadow-[var(--shadow-deal-resting)] flex flex-wrap items-center justify-between gap-3 text-xs text-[var(--neutral-core)]">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-semibold text-[var(--secondary-navy)]">Entity Wiring Active:</span>
+            <span>{sampleVoucher ? sampleVoucher.title : 'Ready'}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 rounded bg-[var(--surface-subtle)] font-mono text-[11px] text-[var(--secondary-navy)]">
+              {vouchers.length} Records Connected
+            </span>
+          </div>
         </div>
       </div>
     </main>
