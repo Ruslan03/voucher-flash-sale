@@ -1,0 +1,633 @@
+<!DOCTYPE html><html class="light" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PromoRush - Payment Page</title>
+<!-- Material Symbols & Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed": "#390c00",
+            "on-error": "#ffffff",
+            "on-primary-fixed": "#410004",
+            "on-primary-container": "#ffe7e5",
+            "inverse-primary": "#ffb3ae",
+            "inverse-surface": "#293138",
+            "surface-dim": "#d2dbe4",
+            "on-background": "#141d23",
+            "on-secondary-container": "#525f7e",
+            "primary": "#aa0019",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#d70324",
+            "primary-fixed-dim": "#ffb3ae",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e9f2fb",
+            "error": "#ba1a1a",
+            "secondary": "#525e7d",
+            "secondary-fixed-dim": "#b9c6ea",
+            "on-tertiary-container": "#ffe8e1",
+            "surface-container": "#e6eff8",
+            "on-tertiary-fixed-variant": "#832600",
+            "primary-fixed": "#ffdad7",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#141d23",
+            "secondary-container": "#cdd9fe",
+            "outline": "#926e6c",
+            "surface-container-high": "#e0e9f2",
+            "tertiary-container": "#c03e05",
+            "on-secondary-fixed": "#0d1b36",
+            "surface-container-highest": "#dbe4ed",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#5d3f3d",
+            "background": "#f6faff",
+            "surface-container-low": "#ecf5fe",
+            "surface-bright": "#f6faff",
+            "secondary-fixed": "#d9e2ff",
+            "on-primary-fixed-variant": "#930015",
+            "surface": "#f6faff",
+            "tertiary-fixed-dim": "#ffb59d",
+            "error-container": "#ffdad6",
+            "surface-tint": "#c0001e",
+            "on-primary": "#ffffff",
+            "outline-variant": "#e7bcb9",
+            "on-secondary-fixed-variant": "#3a4664",
+            "surface-variant": "#dbe4ed",
+            "tertiary-fixed": "#ffdbd0",
+            "tertiary": "#982e00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin-desktop": "2rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem"
+          },
+          "fontFamily": {
+            "display-hero": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "price-original": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "price-md": ["Plus Jakarta Sans"],
+            "timer-digit": ["Plus Jakarta Sans"],
+            "price-xl": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "500"}],
+            "headline-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "700"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "price-original": ["12px", {"lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+            "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+            "label-caps": ["11px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+            "price-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+            "timer-digit": ["14px", {"lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "800"}],
+            "price-xl": ["24px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "display-hero-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.65; transform: scale(0.96); }
+    }
+    .pulse-urgent {
+      animation: pulse-subtle 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md">
+<!-- Interactive State Switcher Bar (Demo Bar for Testing States) -->
+
+<!-- 1. Header & Announcement Bar -->
+<!-- Announcement Bar (dark slate background #0b132b) -->
+
+<!-- Header Navbar (Clean white, minimal transactional mode: logo left, profile right, NO links/search) -->
+
+<!-- 2. Full-Width Countdown Bar directly under header -->
+
+<!-- MAIN CANVAS CONTAINER -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-margin md:px-margin-desktop py-space-xl">
+<!-- VIEW 1: Checkout Form (Primary Workflow) -->
+<div class="hidden" id="view-checkout">
+<!-- 3. Breadcrumb & Title -->
+<nav aria-label="Breadcrumb" class="mb-4">
+
+</nav>
+<div class="mb-space-xl border-b border-surface-container-high pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-background tracking-tight">Checkout &amp; Pembayaran Kilat</h1>
+<p class="font-body-md text-body-md text-secondary mt-1">Selesaikan pembayaran sebelum kuota voucher dilepas kembali ke sistem.</p>
+</div>
+<div class="flex items-center gap-2 bg-primary-fixed/50 text-on-primary-fixed-variant px-3 py-1.5 rounded-lg border border-outline-variant/60">
+<span class="material-symbols-outlined text-[18px]">lock_clock</span>
+<span class="text-body-sm font-headline-sm">Reservasi Kuota ID: #RES-77891</span>
+</div>
+</div>
+<!-- 4. Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column (wider, ~65% / 8 of 12 cols) -->
+<section class="lg:col-span-8 flex flex-col gap-6">
+<!-- Payment Method Card Section -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-space-xl shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<span class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">1</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Pilih Metode Pembayaran</h2>
+</div>
+<span class="text-body-sm font-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">bolt</span> Terverifikasi Otomatis
+              </span>
+</div>
+<fieldset class="space-y-4">
+<legend class="sr-only">Metode Pembayaran Online</legend>
+<!-- Card 1: Midtrans Payment Gateway (Selected by default) -->
+<label class="relative block rounded-xl border-2 border-primary-container bg-surface-container-low/40 p-5 cursor-pointer transition-all hover:bg-surface-container-low shadow-sm" id="payment-midtrans-card">
+<div class="flex items-start gap-4">
+<!-- Radio Button -->
+<div class="pt-0.5">
+<input checked="" class="w-5 h-5 text-primary-container border-outline focus:ring-primary-container cursor-pointer" name="payment_method" onchange="handlePaymentSelection('midtrans')" type="radio" value="midtrans">
+</div>
+<!-- Content -->
+<div class="flex-1">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Midtrans Payment Gateway</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-primary text-on-primary">Direkomendasikan</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-caps bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">
+                        Bebas Biaya Admin (Rp0)
+                      </span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-1">Instant verification, no manual confirmation required</p>
+<!-- Gateway Badges -->
+<div class="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-surface-container-high/60">
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#00aed6]">GoPay</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-black text-rose-600 tracking-tight">QRIS</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#00529C]">BCA VA</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#EE4D2D]">ShopeePay</span>
+</div>
+<span class="text-body-sm text-secondary ml-auto hidden sm:inline">+ Snap Instant API</span>
+</div>
+</div>
+</div>
+</label>
+<!-- Card 2: Xendit Payment Gateway -->
+<label class="relative block rounded-xl border border-surface-container-high bg-white p-5 cursor-pointer transition-all hover:border-secondary hover:bg-surface-container-low/20" id="payment-xendit-card">
+<div class="flex items-start gap-4">
+<!-- Radio Button -->
+<div class="pt-0.5">
+<input class="w-5 h-5 text-primary-container border-outline focus:ring-primary-container cursor-pointer" name="payment_method" onchange="handlePaymentSelection('xendit')" type="radio" value="xendit">
+</div>
+<!-- Content -->
+<div class="flex-1">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Xendit Payment Gateway</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-surface-container-high text-secondary">Alternatif</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-caps bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">
+                        Bebas Biaya Admin (Rp0)
+                      </span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-1">Multi-bank automatic settlement within 10 seconds</p>
+<!-- Gateway Badges -->
+<div class="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-surface-container-high/60">
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#00387A]">Mandiri Bill</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#F15A22]">BNI VA</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#00529C]">BRI VA</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#4c3494]">OVO</span>
+</div>
+<div class="h-8 px-2.5 rounded bg-white border border-surface-container-high flex items-center justify-center shadow-2xs">
+<span class="text-body-sm font-bold text-[#118EEA]">DANA</span>
+</div>
+</div>
+</div>
+</div>
+</label>
+</fieldset>
+<!-- Instructional Hint for selected payment -->
+<div class="mt-4 p-3.5 rounded-lg bg-surface-container-low border border-surface-container-high text-body-sm flex items-start gap-2.5" id="payment-gateway-notes">
+<span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+<div>
+<p class="text-on-surface font-headline-sm text-body-sm">Proses Instan QRIS &amp; Virtual Account</p>
+<p class="text-secondary text-body-sm mt-0.5">Setelah menekan tombol Bayar, Anda akan langsung diarahkan ke layar pembayaran kode QR / nomor Virtual Account Midtrans.</p>
+</div>
+</div>
+</div>
+<!-- Security & Guarantee Box below Payment Methods -->
+
+</section>
+<!-- Right Column (Sticky Order Summary, ~35% / 4 of 12 cols) -->
+<aside class="lg:col-span-4 sticky top-20">
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-space-xl shadow-md">
+<!-- Card Header -->
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<h2 class="font-headline-md text-headline-sm text-on-surface">Ringkasan Pesanan</h2>
+<span class="font-mono text-[11px] font-bold text-secondary bg-surface-container px-2 py-0.5 rounded">
+                #ORD-20261025-9921
+              </span>
+</div>
+<!-- Item Details -->
+<div class="py-4 border-b border-surface-container-high">
+<div class="flex items-start gap-3">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex-shrink-0 flex items-center justify-center border border-surface-container-high relative overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[28px]">checkroom</span>
+<span class="absolute bottom-0 inset-x-0 bg-primary-container text-[9px] text-white text-center font-bold uppercase py-0.2">FLASH</span>
+</div>
+<div class="flex-1">
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-secondary-container/60 text-on-secondary-container mb-1">
+                    Fashion &amp; Lifestyle
+                  </span>
+<h3 class="font-headline-sm text-body-md text-on-surface line-clamp-1">Zara &amp; MAP Fashion Voucher</h3>
+<div class="flex items-center justify-between mt-1 text-body-sm">
+
+<span class="font-headline-sm text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">Rp200.000 OFF</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="py-4 space-y-2.5 text-body-sm font-body-sm text-secondary border-b border-surface-container-high">
+<div class="flex justify-between items-center">
+<span class="">Harga Kupon Flash Sale</span>
+<span class="font-headline-sm text-on-surface">Rp50.000</span>
+</div>
+<div class="flex justify-between items-center text-emerald-700">
+<span class="">Diskon Tambahan</span>
+<span class="font-headline-sm">-Rp0</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-1">
+<span class="">Biaya Layanan &amp; Admin</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">help_outline</span>
+</div>
+<span class="font-headline-sm text-emerald-700 font-bold">Rp0 (Gratis)</span>
+</div>
+</div>
+<!-- Total Pembayaran -->
+<div class="pt-4 pb-5 flex justify-between items-baseline">
+<div>
+<span class="text-body-sm text-secondary font-headline-sm block">Total Pembayaran:</span>
+<span class="text-[11px] text-secondary">Termasuk PPN &amp; Biaya Gateway</span>
+</div>
+<div class="text-right">
+<span class="font-price-xl text-price-xl font-black text-primary-container tracking-tight">Rp50.000</span>
+</div>
+</div>
+<!-- Primary CTA Button -->
+<button class="w-full h-12 bg-primary-container hover:bg-primary active:scale-[0.98] transition-all rounded-xl text-on-primary font-headline-sm flex items-center justify-center gap-2 shadow-lg shadow-primary-container/25" onclick="simulatePaymentAction()">
+<span class="material-symbols-outlined material-symbols-fill text-[20px]">bolt</span>
+<span class="">Bayar Rp50.000</span>
+</button>
+<!-- Helper Note -->
+<p class="text-[11px] text-secondary text-center mt-3 leading-normal">
+              Dengan mengklik Bayar, Anda menyetujui Syarat &amp; Ketentuan flash sale PromoRush.
+            </p>
+</div>
+</aside>
+</div>
+</div>
+<!-- 5. Payment Status States (Modular Interactive Containers) -->
+<!-- STATUS 1: Pending (Menunggu Pembayaran) -->
+<div class="block" id="view-pending">
+<div class="max-w-[620px] mx-auto bg-surface-container-lowest border border-surface-container-high rounded-2xl p-8 shadow-md text-center">
+<!-- Animated Spinner Icon -->
+<div class="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center relative mb-5">
+<svg class="animate-spin h-12 w-12 text-primary-container" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<span class="material-symbols-outlined text-[24px] text-primary-container absolute inset-0 m-auto flex items-center justify-center">hourglass_top</span>
+</div>
+<span class="px-3 py-1 rounded-full text-label-caps bg-amber-100 text-amber-800 font-bold uppercase tracking-wider inline-block mb-2">
+          Order #ORD-20261025-9921
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Menunggu Konfirmasi Pembayaran</h2>
+<p class="text-body-md text-secondary max-w-md mx-auto mb-6">
+          Selesaikan pembayaran sebelum batas waktu berakhir untuk mengamankan kupon flash sale Anda.
+        </p>
+<!-- Holding Countdown Segment -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-surface-container-high mb-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">alarm</span>
+<span class="text-body-md text-on-surface font-headline-sm">Sisa Waktu Penahanan Kuota:</span>
+</div>
+<div class="font-price-md text-price-md font-mono bg-[#14213d] text-white px-3 py-1 rounded-lg">
+            03:45 WIB
+          </div>
+</div>
+<!-- Payment Instructions for Chosen Method -->
+<div class="text-left bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 mb-6">
+<div class="flex justify-between items-center mb-2">
+<span class="font-headline-sm text-body-sm text-secondary uppercase tracking-wider">Metode: Midtrans QRIS / BCA VA</span>
+<span class="text-body-sm font-bold text-primary-container">Rp50.000</span>
+</div>
+<div class="p-3 bg-surface-container-low/70 rounded-lg flex items-center justify-between font-mono text-body-md border border-surface-container-high">
+<span class="font-bold text-on-surface tracking-wider">8077 0812 3456 7890</span>
+<button class="text-primary hover:text-primary-container flex items-center gap-1 font-body-sm" onclick="copyToClipboard('8077081234567890')">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span class="">Salin</span>
+</button>
+</div>
+<p class="text-body-sm text-secondary mt-2">Buka aplikasi m-Banking atau e-Wallet favorit Anda, lalu masukkan nomor rekening virtual di atas.</p>
+</div>
+<!-- Safe Notice Banner -->
+<div class="w-full bg-surface-container-low rounded-xl p-5 border border-surface-container-high mb-6 text-left">
+  <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+    <div class="flex items-center gap-2 text-on-surface font-bold text-body-md font-body-md">
+      <span class="material-symbols-outlined text-primary text-xl">receipt_long</span>
+      <span class="">Rincian Pembayaran</span>
+    </div>
+    <span class="inline-flex items-center gap-1 text-[11px] font-bold font-label-caps px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300">
+      <span class="material-symbols-outlined text-xs">hourglass_top</span>
+      MENUNGGU PEMBAYARAN
+    </span>
+  </div>
+  <div class="divide-y divide-surface-container-high text-body-sm font-body-sm mt-1">
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary">Order ID</span>
+      <div class="flex items-center gap-2">
+        <span class="font-mono font-bold text-on-surface">#ORD-20261025-9921</span>
+        <button class="text-secondary hover:text-primary transition-colors text-xs flex items-center" title="Salin ID" onclick="copyToClipboard('#ORD-20261025-9921')">
+          <span class="material-symbols-outlined text-base">content_copy</span>
+        </button>
+      </div>
+    </div>
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary"><span style="letter-spacing: 0.06px;" class="">Waktu Transaksi</span></span>
+      <span class="font-medium text-on-surface">25 Okt 2026, 12:05 WIB</span>
+    </div>
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary">Metode Pembayaran</span>
+      <span class="font-medium text-on-surface text-right">Midtrans (BCA Virtual Account / QRIS)</span>
+    </div>
+    <div class="pt-3 pb-1 flex justify-between items-baseline">
+      <div>
+        <span class="text-on-surface font-bold text-body-md font-body-md block">Total Tagihan</span>
+        <span class="text-label-caps font-label-caps text-emerald-600 font-bold">Hemat Rp150.000</span>
+      </div>
+      <div class="text-right">
+        <span class="font-price-xl text-price-xl text-primary font-black tracking-tight">Rp50.000</span>
+        <span class="text-price-original line-through text-secondary block">Rp200.000</span>
+      </div>
+    </div>
+  </div>
+</div><div class="p-3.5 bg-blue-50 border border-blue-200 text-blue-900 rounded-xl text-body-sm text-left flex items-start gap-3 mb-6">
+<span class="material-symbols-outlined text-blue-700 text-[20px] flex-shrink-0 mt-0.5">verified</span>
+<span class="">Pesanan Anda tersimpan secara aman meskipun halaman ini dimuat ulang (refresh). Sistem akan memperbarui status secara otomatis.</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-3">
+<button class="flex-1 h-12 bg-primary-container hover:bg-primary active:scale-95 transition-all text-on-primary rounded-xl font-headline-sm flex items-center justify-center gap-2 w-full" onclick="simulateCheckPaymentStatus()">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+<span class="">Cek Status Pembayaran</span>
+</button>
+
+</div>
+</div>
+</div>
+<!-- STATUS 2: Failed (Pembayaran Gagal) -->
+<div class="hidden" id="view-failed">
+<div class="max-w-[560px] mx-auto bg-surface-container-lowest border border-error/30 rounded-2xl p-8 shadow-md text-center">
+<!-- Red Alert Badge Icon -->
+<div class="w-20 h-20 mx-auto rounded-full bg-error-container text-on-error-container flex items-center justify-center mb-5 border-2 border-error">
+<span class="material-symbols-outlined text-[40px] text-error">cancel</span>
+</div>
+<span class="px-3 py-1 rounded-full text-label-caps bg-red-100 text-red-800 font-bold uppercase tracking-wider inline-block mb-2">
+          Transaksi Ditolak Gateway
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Pembayaran Tidak Berhasil</h2>
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high my-5 text-left flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[22px]">error</span>
+<div>
+<p class="font-headline-sm text-body-sm text-on-surface">Penyebab Kegagalan:</p>
+<p class="text-body-md text-secondary mt-0.5">Waktu transaksi bank habis atau otorisasi ditolak.</p>
+</div>
+</div>
+<p class="text-body-md text-secondary mb-6">
+          Jangan khawatir, kuota voucher Anda masih dapat dicoba kembali sebelum masa penahanan kuota 5 menit berakhir.
+        </p>
+<div class="flex flex-col sm:flex-row gap-3">
+<button class="flex-1 h-12 bg-primary-container hover:bg-primary active:scale-95 transition-all text-on-primary rounded-xl font-headline-sm flex items-center justify-center gap-2" onclick="switchViewState('checkout')">
+<span class="material-symbols-outlined text-[20px]">replay</span>
+<span class="">Coba Lagi</span>
+</button>
+<button class="flex-1 h-12 bg-surface-container hover:bg-surface-container-high active:scale-95 transition-all text-on-surface rounded-xl font-headline-sm flex items-center justify-center gap-2" onclick="switchViewState('checkout')">
+<span class="material-symbols-outlined text-[20px]">home</span>
+<span class="">Kembali ke Beranda</span>
+</button>
+</div>
+</div>
+</div>
+<!-- STATUS 3: Reservation Expired (Waktu Pembayaran Habis) -->
+<div class="hidden" id="view-expired">
+<div class="max-w-[560px] mx-auto bg-surface-container-lowest border border-amber-300 rounded-2xl p-8 shadow-md text-center">
+<!-- Amber Alert Icon -->
+<div class="w-20 h-20 mx-auto rounded-full bg-amber-100 text-amber-800 flex items-center justify-center mb-5 border-2 border-amber-400">
+<span class="material-symbols-outlined text-[40px] text-amber-700">timer_off</span>
+</div>
+<span class="px-3 py-1 rounded-full text-label-caps bg-amber-200 text-amber-900 font-bold uppercase tracking-wider inline-block mb-2">
+          Sesi Habis
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Waktu Pembayaran Habis</h2>
+<p class="text-body-lg text-secondary my-4 leading-relaxed">
+          Batas waktu 5 menit terlampaui. Kuota voucher telah dilepas kembali ke flash sale.
+        </p>
+<div class="p-3.5 bg-surface-container-low rounded-xl border border-surface-container-high mb-6 text-body-sm text-secondary">
+          Voucher flash sale bersifat dinamis dan berebut kuota per detik. Anda dapat memantau kembali slot pembukaan flash hour berikutnya jam 14:00 WIB.
+        </div>
+<button class="w-full h-12 bg-primary-container hover:bg-primary active:scale-95 transition-all text-on-primary rounded-xl font-headline-sm flex items-center justify-center gap-2" onclick="switchViewState('checkout')">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+<span class="">Kembali ke Beranda</span>
+</button>
+</div>
+</div>
+</main>
+<!-- 6. Footer (Exact minimal single-row footer identical to Dashboard SCREEN_8 & SCREEN_2) -->
+
+<!-- Micro-interactions & Demo Logic -->
+<script>
+    let isUrgent = false;
+    let selectedMethod = 'midtrans';
+
+    // Switch between QA View States
+    function switchViewState(state) {
+      const views = ['checkout', 'pending', 'failed', 'expired'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        const btn = document.getElementById(`btn-view-${v}`);
+        if (el) {
+          if (v === state) {
+            el.classList.remove('hidden');
+            el.classList.add('block');
+          } else {
+            el.classList.add('hidden');
+            el.classList.remove('block');
+          }
+        }
+        if (btn) {
+          if (v === state) {
+            btn.className = "px-3 py-1 rounded-full text-body-sm font-headline-sm transition-all bg-primary-container text-on-primary";
+          } else {
+            btn.className = "px-3 py-1 rounded-full text-body-sm font-body-sm text-surface-dim hover:text-white hover:bg-surface-container-highest/20 transition-all";
+          }
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toggle simulated urgent state under 1 min
+    function toggleUrgentTimer() {
+      isUrgent = !isUrgent;
+      const banner = document.getElementById('global-countdown-banner');
+      const timerDisplay = document.getElementById('timer-display');
+      const btn = document.getElementById('btn-toggle-timer');
+
+      if (isUrgent) {
+        banner.classList.remove('bg-[#14213d]');
+        banner.classList.add('bg-primary-container', 'animate-pulse');
+        timerDisplay.textContent = '00:48';
+        timerDisplay.classList.add('bg-white', 'text-primary-container');
+        timerDisplay.classList.remove('bg-black/40', 'text-white');
+        btn.classList.add('bg-primary-container', 'text-white');
+      } else {
+        banner.classList.add('bg-[#14213d]');
+        banner.classList.remove('bg-primary-container', 'animate-pulse');
+        timerDisplay.textContent = '04:32';
+        timerDisplay.classList.remove('bg-white', 'text-primary-container');
+        timerDisplay.classList.add('bg-black/40', 'text-white');
+        btn.classList.remove('bg-primary-container', 'text-white');
+      }
+    }
+
+    // Radio selection highlight card
+    function handlePaymentSelection(method) {
+      selectedMethod = method;
+      const cardMidtrans = document.getElementById('payment-midtrans-card');
+      const cardXendit = document.getElementById('payment-xendit-card');
+      const notes = document.getElementById('payment-gateway-notes');
+
+      if (method === 'midtrans') {
+        cardMidtrans.classList.remove('border-surface-container-high', 'bg-white');
+        cardMidtrans.classList.add('border-primary-container', 'bg-surface-container-low/40', 'border-2');
+
+        cardXendit.classList.remove('border-primary-container', 'bg-surface-container-low/40', 'border-2');
+        cardXendit.classList.add('border-surface-container-high', 'bg-white', 'border');
+
+        notes.innerHTML = `
+          <span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+          <div>
+            <p class="text-on-surface font-headline-sm text-body-sm">Proses Instan QRIS &amp; Virtual Account</p>
+            <p class="text-secondary text-body-sm mt-0.5">Setelah menekan tombol Bayar, Anda akan langsung diarahkan ke layar pembayaran kode QR / nomor Virtual Account Midtrans.</p>
+          </div>
+        `;
+      } else {
+        cardXendit.classList.remove('border-surface-container-high', 'bg-white', 'border');
+        cardXendit.classList.add('border-primary-container', 'bg-surface-container-low/40', 'border-2');
+
+        cardMidtrans.classList.remove('border-primary-container', 'bg-surface-container-low/40', 'border-2');
+        cardMidtrans.classList.add('border-surface-container-high', 'bg-white', 'border');
+
+        notes.innerHTML = `
+          <span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+          <div>
+            <p class="text-on-surface font-headline-sm text-body-sm">Penyelesaian Otomatis Multibank Xendit</p>
+            <p class="text-secondary text-body-sm mt-0.5">Nomor Virtual Account Bank Mandiri, BNI, dan BRI akan diverifikasi instan dalam tempo kurang dari 10 detik.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Interactive button payment trigger
+    function simulatePaymentAction() {
+      switchViewState('pending');
+    }
+
+    function simulateCheckPaymentStatus() {
+      // Simulate quick status check feedback
+      alert('Sistem sedang menyinkronkan status dengan Payment Gateway...');
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Nomor Virtual Account disalin: ' + text);
+      }).catch(() => {
+        alert('Nomor Virtual Account: ' + text);
+      });
+    }
+
+    // Dynamic Clock simulation for WIB Server Time
+    setInterval(() => {
+      const now = new Date();
+      const hours = String((now.getUTCHours() + 7) % 24).padStart(2, '0');
+      const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+      const clockEl = document.getElementById('server-clock-text');
+      if (clockEl) {
+        clockEl.textContent = `WIB Server Time: ${hours}:${minutes}:${seconds}`;
+      }
+    }, 1000);
+  </script>
+
+
+
+
+
+
+
+
+</body></html>

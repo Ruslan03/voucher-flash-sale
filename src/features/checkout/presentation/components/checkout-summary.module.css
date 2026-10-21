@@ -1,0 +1,23 @@
+.summary { position: sticky; top: 24px; background: var(--canvas-base); border: 1px solid var(--color-surface-container-high); border-radius: var(--radius-xl); padding: 24px; box-shadow: var(--shadow-deal-resting); }
+.summary header { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-bottom: 1px solid var(--color-surface-container-high); padding-bottom: 12px; }
+.summary h2 { font-size: 16px; font-weight: 700; }
+.summary code { font-size: 9px; padding: 4px 6px; border-radius: 4px; background: var(--color-surface-container); overflow-wrap: anywhere; }
+.item { display: flex; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--color-surface-container-high); }
+.thumbnail { position: relative; flex-shrink: 0; width: 64px; height: 64px; display: grid; place-items: center; border-radius: 8px; background: var(--color-surface-container); color: var(--color-primary); overflow: hidden; }
+.thumbnail > span { font-size: 28px; }
+.thumbnail small { position: absolute; bottom: 0; width: 100%; color: white; background: var(--primary-flash); text-align: center; font-size: 9px; font-weight: 700; }
+.category { display: inline-block; background: var(--color-secondary-container); color: var(--color-secondary); padding: 3px 6px; border-radius: 4px; font-size: 9px; }
+.item h3 { font-size: 13px; font-weight: 700; margin: 4px 0; }
+.value { display: inline-block; font-size: 11px; color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 3px; padding: 2px 5px; }
+.prices { padding: 16px 0; border-bottom: 1px solid var(--color-surface-container-high); font-size: 11px; }
+.prices > div { display: flex; gap: 12px; justify-content: space-between; margin-bottom: 10px; }
+.prices > div:last-child { margin-bottom: 0; }
+.prices dt { color: var(--color-secondary); }
+.prices dd { font-weight: 700; }
+.total { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 20px 0; }
+.total strong { font-size: 11px; color: var(--color-secondary); }
+.total small { display: block; font-size: 9px; color: var(--color-secondary); margin-top: 3px; }
+.total b { font-size: 24px; color: var(--primary-flash); font-weight: 800; }
+.pay { width: 100%; min-height: 48px; }
+.terms { font-size: 10px; color: var(--color-secondary); text-align: center; line-height: 16px; margin-top: 12px; }
+@media (max-width: 800px) { .summary { position: static; } }

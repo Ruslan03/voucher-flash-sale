@@ -1,0 +1,4 @@
+.notice { display: flex; align-items: center; gap: 12px; border: 1px solid #dbeafe; border-radius: var(--radius-xl); padding: 14px; background: #eff6ffb3; text-align: left; }
+.icon { flex-shrink: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; background: #dbeafe; color: #1d4ed8; }
+.icon > span { font-size: 20px; }
+.notice p { color: #1e3a8a; font-size: 12px; line-height: 17px; }

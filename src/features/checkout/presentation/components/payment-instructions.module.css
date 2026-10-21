@@ -1,0 +1,8 @@
+.panel { text-align: left; border: 1px solid var(--color-surface-container-high); border-radius: var(--radius-xl); padding: 16px; }
+.panel header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.panel h2 { text-transform: uppercase; letter-spacing: .7px; font-size: 11px; font-weight: 700; color: var(--color-secondary); }
+.panel header b { color: var(--primary-flash); font-size: 12px; white-space: nowrap; }
+.account { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid var(--color-surface-container-high); border-radius: 8px; background: var(--color-surface-container-low); padding: 10px; }
+.account code { font-size: 14px; font-weight: 700; letter-spacing: 1px; user-select: all; overflow-wrap: anywhere; }
+.panel p { margin-top: 10px; font-size: 11px; line-height: 17px; color: var(--color-secondary); }
+@media (max-width: 400px) { .account code { font-size: 12px; } }

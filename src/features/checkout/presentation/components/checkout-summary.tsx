@@ -1,0 +1,8 @@
+import { checkoutTotal, type CheckoutOrder } from '../../domain/checkout'
+import { Button } from '@/shared/presentation/components/atoms/button'
+import { Icon } from '@/shared/presentation/components/atoms/icon'
+import { formatRupiah } from '@/shared/presentation/lib/commerce-format'
+import styles from './checkout-summary.module.css'
+export function CheckoutSummary({ order, busy, disabled, onPay }: { order: CheckoutOrder; busy: boolean; disabled: boolean; onPay: () => void }) {
+  return <aside className={styles.summary}><header><h2>Ringkasan Pesanan</h2><code>{order.orderId}</code></header><div className={styles.item}><div className={styles.thumbnail}><Icon name="checkroom" /><small>FLASH</small></div><div><span className={styles.category}>{order.voucher.category}</span><h3>{order.voucher.name}</h3><b className={styles.value}>{formatRupiah(order.voucher.faceValue)} OFF</b></div></div><dl className={styles.prices}><div><dt>Harga Kupon Flash Sale</dt><dd>{formatRupiah(order.voucher.price)}</dd></div><div><dt>Diskon Tambahan</dt><dd>-{formatRupiah(order.discount)}</dd></div><div><dt>Biaya Layanan &amp; Admin</dt><dd>{order.fee === 0 ? 'Rp0 (Gratis)' : formatRupiah(order.fee)}</dd></div></dl><div className={styles.total}><div><strong>Total Pembayaran:</strong><small>Termasuk PPN &amp; Biaya Gateway</small></div><b>{formatRupiah(checkoutTotal(order))}</b></div><Button className={styles.pay} disabled={disabled || busy} onClick={onPay}><Icon name="bolt" />{busy ? 'Memproses...' : `Bayar ${formatRupiah(checkoutTotal(order))}`}</Button><p className={styles.terms}>Dengan mengklik Bayar, Anda menyetujui Syarat &amp; Ketentuan flash sale PromoRush.</p></aside>
+}

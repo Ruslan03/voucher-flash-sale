@@ -1,0 +1,257 @@
+<!DOCTYPE html><html class="light" lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pembayaran Tidak Berhasil - PromoRush Indonesia</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-bright": "#f6faff",
+            "on-tertiary-container": "#ffe8e1",
+            "secondary-fixed": "#d9e2ff",
+            "surface-tint": "#c0001e",
+            "on-secondary": "#ffffff",
+            "on-primary-container": "#ffe7e5",
+            "on-primary-fixed": "#410004",
+            "surface-container-highest": "#dbe4ed",
+            "secondary-fixed-dim": "#b9c6ea",
+            "surface": "#f6faff",
+            "tertiary-fixed-dim": "#ffb59d",
+            "on-tertiary-fixed-variant": "#832600",
+            "on-secondary-fixed-variant": "#3a4664",
+            "primary-fixed-dim": "#ffb3ae",
+            "inverse-surface": "#293138",
+            "secondary": "#525e7d",
+            "inverse-on-surface": "#e9f2fb",
+            "primary-fixed": "#ffdad7",
+            "surface-container": "#e6eff8",
+            "error": "#ba1a1a",
+            "on-surface": "#141d23",
+            "on-tertiary-fixed": "#390c00",
+            "outline": "#926e6c",
+            "on-surface-variant": "#5d3f3d",
+            "on-secondary-fixed": "#0d1b36",
+            "surface-container-high": "#e0e9f2",
+            "tertiary": "#982e00",
+            "surface-variant": "#dbe4ed",
+            "inverse-primary": "#ffb3ae",
+            "on-secondary-container": "#525f7e",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#ecf5fe",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#930015",
+            "on-background": "#141d23",
+            "surface-dim": "#d2dbe4",
+            "error-container": "#ffdad6",
+            "primary-container": "#d70324",
+            "tertiary-fixed": "#ffdbd0",
+            "tertiary-container": "#c03e05",
+            "primary": "#aa0019",
+            "on-error-container": "#93000a",
+            "outline-variant": "#e7bcb9",
+            "on-error": "#ffffff",
+            "background": "#f6faff",
+            "secondary-container": "#cdd9fe",
+            "on-tertiary": "#ffffff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xl": "1.5rem",
+            "space-lg": "1rem",
+            "margin": "1rem",
+            "gutter-desktop": "1.5rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-md": "0.75rem",
+            "margin-desktop": "2rem"
+          },
+          "fontFamily": {
+            "price-md": ["Plus Jakarta Sans"],
+            "timer-digit": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "price-xl": ["Plus Jakarta Sans"],
+            "price-original": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "price-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "timer-digit": ["14px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "800" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "price-xl": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "price-original": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-primary-container selection:text-white">
+<!-- TOP DARK BAR / TICKER -->
+
+<!-- HEADER NAVBAR (No extraneous links, strictly focused transactional shell) -->
+
+<!-- MAIN CANVAS: FOCUSED FAILED TRANSACTION VIEW -->
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6">
+<div class="w-full max-w-[620px] bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-xl shadow-secondary/5 overflow-hidden transition-all">
+<!-- Status Header Banner with Pulse Ring Icon -->
+<div class="pt-10 pb-6 px-8 text-center flex flex-col items-center">
+<!-- Error Circle Indicator -->
+<div class="relative mb-6">
+<div class="absolute -inset-2 bg-error/10 rounded-full animate-ping opacity-60"></div>
+<div class="w-20 h-20 rounded-full bg-error-container/60 border border-error/20 flex items-center justify-center text-error relative shadow-inner">
+<span class="material-symbols-outlined text-[44px]" data-icon="error_outline" data-weight="fill" style="font-variation-settings: 'FILL' 1;">error_outline</span>
+</div>
+</div>
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight mb-2">
+          Transaksi Tidak Berhasil
+        </h1>
+<p class="text-secondary font-body-md text-body-md max-w-md mx-auto text-center leading-relaxed">
+          Transaksi tidak dapat diproses oleh penyedia pembayaran atau waktu otorisasi telah berakhir.
+        </p>
+</div>
+<div class="px-8 pb-8 space-y-6">
+<!-- Urgency Quota Hold Alert Banner -->
+
+<!-- Transaction Details Card Structure -->
+<div class="w-full bg-surface-container-low rounded-xl p-5 border border-surface-container-high mb-6 text-left">
+  <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+    <div class="flex items-center gap-2 text-on-surface font-bold text-body-md font-body-md">
+      <span class="material-symbols-outlined text-error text-xl">receipt_long</span>
+      <span class="">Rincian Pembayaran</span>
+    </div>
+    <span class="inline-flex items-center gap-1 text-xs font-bold font-label-caps px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container border border-error/20">
+      <span class="material-symbols-outlined text-xs">close</span>
+      GAGAL
+    </span>
+  </div>
+  <div class="divide-y divide-surface-container-high text-body-sm font-body-sm mt-1">
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary">Order ID</span>
+      <div class="flex items-center gap-2">
+        <span class="font-mono font-bold text-on-surface">#ORD-20261025-9921</span>
+        <button class="text-secondary hover:text-primary transition-colors text-xs flex items-center" title="Salin ID" onclick="navigator.clipboard.writeText('#ORD-20261025-9921')">
+          <span class="material-symbols-outlined text-base">content_copy</span>
+        </button>
+      </div>
+    </div>
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary">Waktu Transaksi</span>
+      <span class="font-medium text-on-surface">25 Okt 2026, 12:07 WIB</span>
+    </div>
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary">Status Transaksi</span>
+      <span class="font-semibold text-error text-right">Gagal (Gateway Timeout)</span>
+    </div>
+    <div class="py-2.5 flex justify-between items-center">
+      <span class="text-secondary">Metode Pembayaran</span>
+      <span class="font-medium text-on-surface text-right">Midtrans (BCA Virtual Account / QRIS) · Gagal</span>
+    </div>
+    <div class="pt-3 pb-1 flex justify-between items-baseline">
+      <div>
+        <span class="text-on-surface font-bold text-body-md font-body-md block">Jumlah Tagihan</span>
+        <span class="text-label-caps font-label-caps text-error font-bold">Pembayaran Dibatalkan</span>
+      </div>
+      <div class="text-right">
+        <span class="font-price-xl text-price-xl text-error font-black tracking-tight">Rp50.000</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Action Buttons: Clear Velocity Hierarchy -->
+<div class="space-y-3 pt-2">
+<!-- Primary Flash CTA -->
+
+<!-- Secondary CTA -->
+
+<!-- Tertiary CTA Link -->
+<a href="#" class="w-full py-4 px-6 bg-surface-container-low hover:bg-surface-container text-on-surface font-semibold rounded-2xl flex items-center justify-center gap-2 transition-colors duration-150">
+  <span class="material-symbols-outlined text-[20px]" data-icon="bolt" style="color: #000000;">bolt</span>
+  <span class="">Kembali ke Dashboard Flash Sale</span>
+</a>
+</div>
+<!-- Help Desk / Support Snippet -->
+
+</div>
+</div>
+</main>
+<!-- EXACT MINIMAL FOOTER -->
+
+<!-- Realtime Clock & Quota Hold Micro-Interactions -->
+<script>
+    // Live Server Clock Simulation
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const clockElem = document.getElementById('live-wib-clock');
+      if (clockElem) {
+        clockElem.textContent = `WIB Server Time: ${hours}:${minutes}:${seconds}`;
+      }
+    }
+    setInterval(updateClock, 1000);
+
+    // 2-Minute Quota Reservation Countdown Timer
+    let secondsLeft = 118;
+    const countdownBadge = document.getElementById('countdown-badge');
+    const timerInterval = setInterval(() => {
+      if (secondsLeft <= 0) {
+        clearInterval(timerInterval);
+        if (countdownBadge) countdownBadge.textContent = '00:00';
+        return;
+      }
+      secondsLeft--;
+      const mins = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+      const secs = String(secondsLeft % 60).padStart(2, '0');
+      if (countdownBadge) {
+        countdownBadge.textContent = `${mins}:${secs}`;
+      }
+    }, 1000);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

@@ -40,3 +40,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ### Voucher details preview
 
 Buka `/vouchers/zara`, atau pilih **Lihat Detail** pada Dashboard. Slicing, port/adapter, mock limits, test cases dan langkah demo: [Voucher details](src/features/voucher-details/README.md). Data/ownership preview masih terpisah dari Dashboard; transaksi tidak dikirim ke backend.
+
+### Payment status preview
+
+Success: `/payments/demo-success`. Failed: `/payments/demo-failed`. Status dibaca melalui repository mock, bukan parameter status dari gateway. Analisis slicing, mapping file/test, batas integrasi dan demo: [Payment status](src/features/payment-status/README.md).
+
+### Checkout preview
+
+Form: `/checkout/zara`. Pending sesuai screenshot Stitch: `/checkout/demo-order`. Pilihan gateway, VA contoh, countdown, restore browser, polling, serta success/failed/expired memakai adapter lokal. Arsitektur, mapping komponen/test dan langkah demo: [Checkout](src/features/checkout/README.md).

@@ -15,7 +15,7 @@ export type IconName = 'bolt' | 'verified' | 'schedule' | 'local_fire_department
   'smartphone' | 'info' | 'arrow_forward' | 'arrow_back' | 'lock' | 'local_cafe' |
   'styler' | 'headphones' | 'fastfood' | 'expand_more' | 'confirmation_number' |
   'task_alt' | 'receipt_long' | 'add_circle' | 'arrow_downward' | 'timer' | 'close' |
-  'smartphone' | 'info' | 'arrow_forward' | 'arrow_back' | 'lock' | 'sms'
+  'smartphone' | 'info' | 'arrow_forward' | 'arrow_back' | 'lock' | 'sms' | 'check_circle' | 'error_outline' | 'content_copy' | 'qr_code_scanner' | 'check' | 'lock_clock' | 'alarm' | 'hourglass_top' | 'refresh' | 'timer_off'
 
 type IconProps = Omit<ComponentProps<'span'>, 'children'> & { name: IconName; label?: string }
 

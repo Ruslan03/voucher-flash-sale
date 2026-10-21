@@ -1,0 +1,6 @@
+.heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; border-bottom: 1px solid var(--color-surface-container-high); padding-bottom: 20px; margin-bottom: 24px; }
+.heading h1 { font-size: 28px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.heading p { font-size: 14px; color: var(--color-secondary); margin-top: 6px; }
+.reservation { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; background: #ffdad780; border: 1px solid #e7bcb999; color: #930015; border-radius: 8px; padding: 8px 12px; font-size: 12px; }
+.reservation > span { font-size: 18px; }
+@media (max-width: 850px) { .heading { flex-direction: column; align-items: start; } .heading h1 { font-size: 24px; } }

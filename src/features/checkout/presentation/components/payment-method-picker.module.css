@@ -1,0 +1,13 @@
+.panel { background: var(--canvas-base); border: 1px solid var(--color-surface-container-high); border-radius: var(--radius-xl); padding: 24px; }
+.panel header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.panel h2 { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
+.panel h2 b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; font-size: 14px; background: #aa00191a; color: var(--color-primary); }
+.panel header small { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: var(--color-secondary); }
+.panel header small > span { color: #059669; font-size: 16px; }
+.options { display: grid; gap: 16px; border: 0; padding: 0; min-width: 0; }
+.options legend { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.hint { display: flex; align-items: start; gap: 10px; padding: 14px; background: var(--color-surface-container-low); border: 1px solid var(--color-surface-container-high); border-radius: 8px; margin-top: 16px; }
+.hint > span { font-size: 20px; color: var(--color-secondary); }
+.hint p { font-size: 12px; line-height: 18px; color: var(--color-secondary); }
+.hint strong { display: block; color: var(--color-on-surface); margin-bottom: 4px; }
+@media (max-width: 600px) { .panel { padding: 18px; } .panel header { align-items: start; flex-direction: column; } .panel h2 { font-size: 17px; } }

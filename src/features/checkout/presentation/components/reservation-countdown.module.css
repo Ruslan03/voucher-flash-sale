@@ -1,0 +1,6 @@
+.countdown { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border: 1px solid var(--color-surface-container-high); border-radius: var(--radius-xl); background: var(--color-surface-container-low); }
+.countdown > span { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+.countdown > span > span { color: var(--color-secondary); font-size: 20px; }
+.countdown strong { color: white; background: var(--secondary-navy); border-radius: 6px; font-family: monospace; font-size: 18px; padding: 6px 12px; white-space: nowrap; }
+.countdown[data-urgent='true'] strong { background: var(--primary-flash); }
+@media (max-width: 480px) { .countdown { flex-direction: column; } }

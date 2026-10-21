@@ -1,0 +1,6 @@
+.actions { width: 100%; }
+.actions a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; text-align: center; background: var(--color-surface-container-low); border: 1px solid var(--color-surface-container-high); border-radius: var(--radius-xl); color: var(--color-on-surface); padding: 12px 16px; font-size: 14px; font-weight: 700; text-decoration: none; transition: background .15s; }
+.actions a > span:first-child { font-size: 20px; }
+.actions a:hover { background: var(--color-surface-container-high); }
+.actions a:focus-visible { outline: 2px solid var(--primary-flash); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .actions a { transition: none; } }

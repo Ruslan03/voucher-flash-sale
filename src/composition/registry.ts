@@ -1,3 +1,7 @@
+import type { CheckoutRepository } from '@/features/checkout/use-cases/checkout-repository'
+import { PreviewCheckoutRepository } from '@/features/checkout/infrastructure/preview-checkout-repository'
+import type { PaymentStatusRepository } from '@/features/payment-status/use-cases/payment-status-repository'
+import { DemoPaymentStatusRepository } from '@/features/payment-status/infrastructure/demo-payment-status-repository'
 import type { VoucherDetailsRepository } from '@/features/voucher-details/use-cases/voucher-details-repository'
 import { ApiVoucherDetailsRepository } from '@/features/voucher-details/infrastructure/api-voucher-details-repository'
 /**
@@ -33,3 +37,12 @@ export function createVoucherDetailsRepository(token?: string): VoucherDetailsRe
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || ''
   return new ApiVoucherDetailsRepository(baseUrl, token)
 }
+
+// /** Explicit local voucher-details preview adapter. */
+// export function createVoucherDetailsRepository(): VoucherDetailsRepository { return new DemoVoucherDetailsRepository() }
+
+/** Read-only local payment preview until the backend contract is agreed. */
+export function createPaymentStatusRepository(): PaymentStatusRepository { return new DemoPaymentStatusRepository() }
+
+/** Server fixture read; browser persistence is wired separately. */
+export function createCheckoutRepository(): CheckoutRepository { return new PreviewCheckoutRepository() }
