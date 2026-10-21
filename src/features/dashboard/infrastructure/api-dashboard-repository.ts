@@ -79,6 +79,25 @@ export class ApiDashboardRepository implements DashboardRepository {
       headers['Authorization'] = `Bearer ${this.token}`
     }
 
+    let phone = this.userPhone
+    if (!phone && this.token) {
+      try {
+        const payloadBase64 = this.token.split('.')[1]
+        if (payloadBase64) {
+          const decoded = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf-8'))
+          if (decoded.phone) {
+            phone = decoded.phone
+          }
+        }
+      } catch {
+        // ignore decode failure
+      }
+    }
+
+    const vouchersUrl = phone
+      ? `${this.baseUrl}/product/v1/vouchers?phone=${encodeURIComponent(phone)}`
+      : `${this.baseUrl}/product/v1/vouchers`
+
     try {
       const [sessionRes, catalogRes, myVouchersRes] = await Promise.all([
         httpClient
@@ -87,7 +106,7 @@ export class ApiDashboardRepository implements DashboardRepository {
             console.warn('[ApiDashboardRepository] Failed to fetch active session:', err)
             return null
           }),
-        httpClient.get<ApiResponse<ApiCatalogItemDto[]>>(`${this.baseUrl}/product/v1/vouchers`, {
+        httpClient.get<ApiResponse<ApiCatalogItemDto[]>>(vouchersUrl, {
           headers,
         }),
         this.token

@@ -106,6 +106,14 @@ describe('ApiDashboardRepository', () => {
       const repo = new ApiDashboardRepository(baseUrl, 'jwt_token_123', '08123456789')
       const snapshot = await repo.load()
 
+      expect(mockGet).toHaveBeenCalledWith(
+        'https://api.promorush.local/product/v1/vouchers?phone=08123456789',
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Authorization: 'Bearer jwt_token_123',
+          }),
+        })
+      )
       expect(snapshot.mode).toBe('live')
       expect(snapshot.fetchedAt).toBe('2026-10-24T05:02:00Z')
       expect(snapshot.session.startsAt).toBe('2026-10-24T05:00:00Z')
