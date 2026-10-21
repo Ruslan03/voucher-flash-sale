@@ -1,6 +1,6 @@
 export type SaleVoucherStatus = 'upcoming' | 'live' | 'sold-out' | 'ended' | 'category-used' | 'purchased'
 export interface SaleVoucher {
-  mode: 'preview'
+  mode: 'preview' | 'live'
   id: string
   name: string
   category: 'food' | 'fashion' | 'electronics'

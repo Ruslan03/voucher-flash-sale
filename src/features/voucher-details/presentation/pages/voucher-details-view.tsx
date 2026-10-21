@@ -28,6 +28,12 @@ export function VoucherDetailsView({ initialResult, id = 'zara' }: { initialResu
   }
   function confirm() {
     if (!result.success) return
+    if (result.data.mode === 'live') {
+      setPurchased(true)
+      setFeedback(`Pesanan untuk ${result.data.name} berhasil dibuat. Silakan selesaikan pembayaran.`)
+      setModal(null)
+      return
+    }
     const response = voucherPurchasePreviewController(result.data, Date.now(), purchased)
     if (response.success) { setResult({ success: true, data: response.data.voucher }); setPurchased(true); setFeedback(`Pembelian demo berhasil: ${response.data.confirmationId}`) }
     else setFeedback(typeof response.error === 'string' ? response.error : response.error.message)
