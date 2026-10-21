@@ -2,11 +2,32 @@
 
 import React, { useEffect, useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
+import OtpInput from 'react-otp-input'
 import { Icon } from '@/shared/presentation/components/atoms/icon'
 import { Button } from '@/shared/presentation/components/atoms/button'
 import { PhoneNumberField } from '@/shared/presentation/components/molecules/phone-number-field'
 import { requestOtpAction, verifyOtpAction } from '@/features/auth/controllers/auth-controller'
 import styles from './login-form.module.css'
+
+function formatMaskedPhone(raw: string): string {
+  const digits = raw.replace(/\D/g, '')
+  let clean = digits
+  if (clean.startsWith('62')) clean = clean.slice(2)
+  else if (clean.startsWith('0')) clean = clean.slice(1)
+
+  if (clean.length >= 7) {
+    const prefix = clean.slice(0, 3)
+    const suffix = clean.slice(-4)
+    return `+62 ${prefix}-xxxx-${suffix}`
+  }
+  return `+62 ${clean || '812-xxxx-1234'}`
+}
+
+function formatTimer(seconds: number): string {
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+}
 
 export function LoginForm() {
   const router = useRouter()
@@ -102,58 +123,64 @@ export function LoginForm() {
 
   if (step === 'otp') {
     return (
-      <section className={styles.panel} aria-labelledby="login-title">
+      <section className={styles.panel} aria-labelledby="verification-title">
+        <div className={styles.topBar}>
+          <button
+            type="button"
+            className={styles.backButton}
+            onClick={handleChangePhone}
+          >
+            <Icon name="arrow_back" />
+            <span>Back to login</span>
+          </button>
+        </div>
+
         <div className={styles.content}>
           <header className={styles.header}>
             <div className={styles.eyebrow}>
-              <Icon name="verified" className={styles.accessIcon} />
-              VERIFIKASI OTP
+              <Icon name="bolt" className={styles.accessIcon} />
+              EXCLUSIVE FLASH ACCESS
             </div>
-            <h2 id="login-title" className={styles.title}>
-              Masukkan Kode OTP
+            <h2 id="verification-title" className={styles.title}>
+              Enter Verification Code
             </h2>
             <p className={styles.description}>
-              Kode verifikasi 6 digit telah dikirimkan ke:
+              Code sent to{' '}
+              <strong className={styles.highlightPhone}>
+                {formatMaskedPhone(phone)}
+              </strong>
             </p>
-            <div className={styles.phoneBadge}>
-              <Icon name="smartphone" />
-              <span>{phone}</span>
-              <button
-                type="button"
-                className={styles.changeButton}
-                onClick={handleChangePhone}
-                aria-label="Ganti nomor telepon"
-              >
-                Ganti
-              </button>
-            </div>
           </header>
 
           <form className={styles.form} onSubmit={handleVerifyOtp}>
-            <div className={styles.otpField}>
-              <label htmlFor="otp-input" className={styles.otpLabel}>
-                Kode Verifikasi 6 Digit
+            <div>
+              <label className={styles.codeLabel}>
+                6-DIGIT SECURITY CODE
               </label>
-              <input
-                id="otp-input"
-                name="otp"
-                type="text"
-                inputMode="numeric"
-                autoComplete="one-time-code"
-                maxLength={6}
-                placeholder="123456"
+
+              <OtpInput
                 value={otp}
-                onChange={(e) =>
-                  setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))
-                }
-                disabled={isPending}
-                required
-                aria-describedby={
-                  errorMessage ? 'otp-error-status' : 'otp-help-status'
-                }
-                aria-invalid={errorMessage ? 'true' : undefined}
-                className={styles.otpInput}
-                autoFocus
+                onChange={(val) => {
+                  setOtp(val)
+                  if (errorMessage) setErrorMessage(null)
+                }}
+                numInputs={6}
+                inputType="tel"
+                skipDefaultStyles={true}
+                shouldAutoFocus
+                renderInput={(inputProps, index) => {
+                  const isFilled = Boolean(otp[index])
+                  return (
+                    <input
+                      {...inputProps}
+                      className={`${styles.otpBox} ${
+                        isFilled ? styles.otpBoxFilled : ''
+                      }`}
+                      aria-label={`Digit ${index + 1}`}
+                    />
+                  )
+                }}
+                containerStyle={styles.otpContainer}
               />
             </div>
 
@@ -168,33 +195,48 @@ export function LoginForm() {
               </div>
             )}
 
-            <div className={styles.resendContainer}>
-              <span id="otp-help-status">Tidak menerima kode?</span>
-              {cooldown > 0 ? (
-                <span>Kirim ulang dalam {cooldown}s</span>
-              ) : (
-                <button
-                  type="button"
-                  className={styles.resendButton}
-                  onClick={() => handleRequestOtp()}
-                  disabled={isPending}
-                >
-                  Kirim Ulang OTP
-                </button>
-              )}
+            <div className={styles.infoBar}>
+              <div className={styles.timerSection}>
+                <Icon name="schedule" className={styles.timerIcon} />
+                <span>Resend code in:</span>
+                <span className={styles.timerBadge}>
+                  {formatTimer(cooldown)}
+                </span>
+              </div>
+              <button
+                type="button"
+                className={styles.smsButton}
+                onClick={() => handleRequestOtp()}
+                disabled={cooldown > 0 || isPending}
+                title={cooldown > 0 ? `Tunggu ${cooldown} detik` : 'Kirim via SMS'}
+              >
+                <Icon name="sms" className={styles.smsIcon} />
+                <span>Send via SMS</span>
+              </button>
             </div>
 
-            <Button
+            <button
               type="submit"
-              className={styles.submit}
+              className={styles.verifyButton}
               disabled={otp.length !== 6 || isPending}
-              aria-describedby={errorMessage ? 'otp-error-status' : undefined}
             >
-              {isPending ? 'Memverifikasi...' : 'Verifikasi & Masuk'}
-              <Icon name="arrow_forward" className={styles.arrow} />
-            </Button>
+              <span>{isPending ? 'Verifying...' : 'Verify'}</span>
+              <Icon name="lock" className={styles.lockIcon} />
+            </button>
+
+            <p className={styles.footerNote}>
+              Didn&apos;t receive SMS?{' '}
+              <button
+                type="button"
+                className={styles.linkButton}
+                onClick={handleChangePhone}
+              >
+                Change number or retry
+              </button>
+            </p>
           </form>
         </div>
+        <div />
       </section>
     )
   }
