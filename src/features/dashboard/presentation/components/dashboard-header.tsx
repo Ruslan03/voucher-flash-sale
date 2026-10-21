@@ -16,7 +16,7 @@ export function DashboardHeader({ now, user }: { now: number; user: { phone: str
         <div className={styles.inner}>
           <Link href="/dashboard" className={styles.brand}><span className={styles.brandMark}><Icon name="bolt" className={styles.brandIcon} /></span><span><strong>PromoRush</strong><small>Indonesia Flash Market</small></span></Link>
           <div className={styles.account}>
-            <Image src={avatar} width={36} height={36} className={styles.avatar} alt="Avatar akun demo" />
+            <Image src={avatar} width={36} height={36} className={styles.avatar} alt="Avatar akun pengguna" />
             <div className={styles.user}><strong>{user.phone}<Icon name="verified" className={styles.verified} /></strong><small>{user.tier}</small></div>
             <details className={styles.menu}><summary aria-label="Menu akun"><Icon name="expand_more" /></summary><nav aria-label="Navigasi akun"><a href="#owned-vouchers">Kupon saya</a><a href="#vouchers-grid">Katalog voucher</a><Link href="/login">Kembali ke login</Link></nav></details>
           </div>

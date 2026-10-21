@@ -16,7 +16,7 @@ export function OfferCard({ offer, state, onPurchase }: { offer: DashboardOffer;
   const buttonLabel = state === 'available' ? `Beli Voucher ${formatRupiah(offer.price)}` : state === 'upcoming' ? 'Belum Dimulai' : state === 'sold-out' ? 'Habis Terjual' : state === 'category-used' ? 'Kuota kategori terpakai' : state === 'owned' ? 'Sudah dimiliki' : 'Sesi selesai'
   return (
     <article className={styles.card} data-state={state} data-offer-id={offer.id}>
-      <div className={styles.ribbon}><span>{stateLabels[state]}</span><span>{state === 'available' ? 'Kuota terbatas' : 'Preview'}</span></div>
+      <div className={styles.ribbon}><span>{stateLabels[state]}</span><span>{state === 'available' ? 'Kuota terbatas' : 'Flash Sale'}</span></div>
       <div className={styles.body}>
         <MerchantHeading merchant={offer.merchant} subtitle={offer.subtitle} category={offer.category} />
         <div className={styles.price}><div><small>Nilai Promo</small><strong>Hemat {formatRupiah(offer.originalPrice - offer.price)}</strong></div><div><del>{formatRupiah(offer.originalPrice)}</del><b>Bayar {formatRupiah(offer.price)}</b></div></div>

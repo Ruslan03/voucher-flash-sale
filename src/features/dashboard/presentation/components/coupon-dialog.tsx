@@ -18,21 +18,20 @@ export function CouponDialog({ selection, mode = 'preview', onClose, onConfirm }
   }, [])
   const purchase = selection.kind === 'purchase'
   const merchant = selection.kind === 'purchase' ? selection.offer.merchant : selection.coupon.merchant
-  const isLive = mode === 'live'
 
   return <dialog ref={ref} className={styles.dialog} aria-labelledby="coupon-dialog-title" onCancel={event => { event.preventDefault(); onClose() }}>
     <button className={styles.close} type="button" onClick={onClose} aria-label="Tutup"><Icon name="close" /></button>
-    <span className={styles.preview}>{isLive ? 'FLASH SALE RESMI' : 'PREVIEW LOKAL'}</span>
-    <h2 id="coupon-dialog-title">{purchase ? (isLive ? 'Konfirmasi Pembelian Voucher' : 'Konfirmasi pembelian demo') : (isLive ? 'Detail Kupon Aktif' : 'Detail Kupon Demo')}</h2>
+    <span className={styles.preview}>FLASH SALE RESMI</span>
+    <h2 id="coupon-dialog-title">{purchase ? 'Konfirmasi Pembelian Voucher' : 'Detail Kupon Aktif'}</h2>
     <h3>{merchant}</h3>
     {selection.kind === 'purchase' ? <>
-      <dl className={styles.summary}><div><dt>Nilai awal</dt><dd>{formatRupiah(selection.offer.originalPrice)}</dd></div><div><dt>Hemat</dt><dd>{formatRupiah(selection.offer.originalPrice - selection.offer.price)}</dd></div><div><dt>{isLive ? 'Harga Bayar' : 'Bayar (simulasi)'}</dt><dd>{formatRupiah(selection.offer.price)}</dd></div></dl>
-      <p className={styles.notice}>{isLive ? 'Voucher ini siap diklaim. Kuota dibatasi maks 1 voucher per kategori.' : 'Tidak ada pembayaran atau permintaan backend. Konfirmasi hanya memperbarui kuota dan kupon pada preview browser ini.'}</p>
-      <Button className={styles.confirm} onClick={() => onConfirm(selection.offer.id)}>{isLive ? 'Konfirmasi Pembelian' : 'Konfirmasi demo'}</Button>
+      <dl className={styles.summary}><div><dt>Nilai awal</dt><dd>{formatRupiah(selection.offer.originalPrice)}</dd></div><div><dt>Hemat</dt><dd>{formatRupiah(selection.offer.originalPrice - selection.offer.price)}</dd></div><div><dt>Harga Bayar</dt><dd>{formatRupiah(selection.offer.price)}</dd></div></dl>
+      <p className={styles.notice}>Voucher ini siap diklaim. Kuota dibatasi maks 1 voucher per kategori.</p>
+      <Button className={styles.confirm} onClick={() => onConfirm(selection.offer.id)}>Lanjut ke Detail & Checkout</Button>
     </> : <>
       <p className={styles.code}>{selection.coupon.code}</p>
-      <dl className={styles.summary}><div><dt>Diskon</dt><dd>{formatRupiah(selection.coupon.savings)}</dd></div><div><dt>{isLive ? 'Harga Beli' : 'Bayar (simulasi)'}</dt><dd>{formatRupiah(selection.coupon.paid)}</dd></div><div><dt>Berlaku sampai</dt><dd>{formatDashboardDate(selection.coupon.expiresAt)}</dd></div></dl>
-      <p className={styles.notice}>{isLive ? 'Gunakan kode kupon ini di merchant sebelum masa berlaku berakhir.' : 'Kupon demo tidak dapat ditukarkan di merchant.'}</p>
+      <dl className={styles.summary}><div><dt>Diskon</dt><dd>{formatRupiah(selection.coupon.savings)}</dd></div><div><dt>Harga Beli</dt><dd>{formatRupiah(selection.coupon.paid)}</dd></div><div><dt>Berlaku sampai</dt><dd>{formatDashboardDate(selection.coupon.expiresAt)}</dd></div></dl>
+      <p className={styles.notice}>Gunakan kode kupon ini di merchant sebelum masa berlaku berakhir.</p>
     </>}
   </dialog>
 }
