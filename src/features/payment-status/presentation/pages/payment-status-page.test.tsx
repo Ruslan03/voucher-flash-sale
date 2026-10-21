@@ -21,3 +21,5 @@ it('returns not-found for missing or malformed orders instead of fabricating a s
     await expect(PaymentStatusPage({ params: Promise.resolve({ orderId: 'unknown' }) })).rejects.toThrow('NEXT_NOT_FOUND')
   }
 })
+
+vi.mock('next/font/local', () => ({ default: () => ({ className: 'icons' }) }))

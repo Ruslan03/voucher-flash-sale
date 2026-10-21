@@ -43,8 +43,10 @@ Buka `/vouchers/zara`, atau pilih **Lihat Detail** pada Dashboard. Slicing, port
 
 ### Payment status preview
 
-Success: `/payments/demo-success`. Failed: `/payments/demo-failed`. Status dibaca melalui repository mock, bukan parameter status dari gateway. Analisis slicing, mapping file/test, batas integrasi dan demo: [Payment status](src/features/payment-status/README.md).
+Success: `/payment-status/demo-success`. Failed: `/payment-status/demo-failed`. Status dibaca melalui repository mock, bukan parameter status dari gateway. Analisis slicing, mapping file/test, batas integrasi dan demo: [Payment status](src/features/payment-status/README.md).
 
 ### Checkout preview
 
-Form: `/checkout/zara`. Pending sesuai screenshot Stitch: `/checkout/demo-order`. Pilihan gateway, VA contoh, countdown, restore browser, polling, serta success/failed/expired memakai adapter lokal. Arsitektur, mapping komponen/test dan langkah demo: [Checkout](src/features/checkout/README.md).
+Form: `/payment-method/zara`. Pending sesuai screenshot Stitch: `/payment-status/demo-order`. Pilihan gateway, VA contoh, countdown, restore browser, polling, serta success/failed/expired memakai adapter lokal. Arsitektur, mapping komponen/test dan langkah demo: [Checkout](src/features/checkout/README.md).
+
+Alur route: `/payment-method/:id` (pilih metode dan Bayar) → `/payment-status/:id` (pending, cek status, sukses/gagal/kedaluwarsa). Retry gagal kembali ke payment-method dengan deadline pesanan yang sama.

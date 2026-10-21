@@ -2,8 +2,8 @@
 
 Preview routes:
 
-- `/payments/demo-success`
-- `/payments/demo-failed`
+- `/payment-status/demo-success`
+- `/payment-status/demo-failed`
 
 Source: Stitch project `14051200829858170119`, success screen `65d4914aa58048e58beacc6cf801563b`, failed screen `8f94972eafde4d738d5bd708344cafd1`. Original HTML is retained in `design/success.html` and `design/failed.html`; screenshots were downloaded with `curl -L --fail` to the adjacent JPG files. HTML was retrieved through the authenticated Stitch file tool. Neither screen contains separate product image assets.
 
@@ -13,7 +13,7 @@ Both screens use a centered white transaction card on a pale canvas. Success has
 
 | Section | File | Responsibility / interaction |
 | --- | --- | --- |
-| Route shell | `src/app/payments/[orderId]/page.tsx` | Metadata, Suspense fallback, forward async params |
+| Route shell | `src/app/payment-status/[orderId]/page.tsx` | Metadata, Suspense fallback, forward async params |
 | Server read | `presentation/pages/payment-status-page.tsx` | Read status; unknown/invalid ID returns not-found |
 | Page composition | `presentation/pages/payment-status-view.tsx` | Render result, preview label, retry a failed read |
 | Status header | `presentation/components/payment-status-heading.tsx` | Decorative icon, one h1, status-specific explanation |
@@ -41,6 +41,10 @@ Each runtime `.ts`/`.tsx` feature file has a colocated test, except the type-onl
 
 Coverage includes success/failed records, malformed data, invalid/missing/mismatched IDs, transport sanitization, isolated fixtures, DI binding, WIB date rollover, success/failure receipts, savings, exact clipboard value and denial, conditional redemption instructions, Dashboard link, retry/loading/action failure, server-page 404 behavior and route delegation.
 
-Demo: open each preview route, compare the receipt/status, click **Salin Order ID**, then **Kembali ke Dashboard Flash Sale**. Open `/payments/unknown` to confirm not-found UI. Run `npm test`, `npm run lint`, `./node_modules/.bin/tsc --noEmit`, and `npm run build` for repository checks. Remote CI, real gateway/backend and a physical mobile browser are not verified.
+Demo: open each preview route, compare the receipt/status, click **Salin Order ID**, then **Kembali ke Dashboard Flash Sale**. Open `/payment-status/unknown` to confirm not-found UI. Run `npm test`, `npm run lint`, `./node_modules/.bin/tsc --noEmit`, and `npm run build` for repository checks. Remote CI, real gateway/backend and a physical mobile browser are not verified.
 
 Final local verification: 106 repository tests pass, including 22 new payment-status/route tests; ESLint, TypeScript (`tsc --noEmit`) and `git diff --check` pass. Both desktop screens were visually checked in Brave with local Material Symbols rendering. The full production build is blocked by the existing Turbopack CSS worker port restriction (`Operation not permitted`), including an escalated run. Dependencies were synchronized using the existing lockfile (`npm ci`) after an already-declared login dependency was missing; manifests and login code were not changed. Preview server was restarted after the install and is available on port 3000.
+
+## Shared order status flow
+
+After selecting a method at `/payment-method/zara`, Pay navigates to `/payment-status/zara`. `OrderPaymentStatusView` owns pending, auto/manual checking, expiry and terminal outcomes for checkout IDs. It restores the same local order through `features/checkout/public.ts`; failed retries navigate back to `/payment-method/:id`. `/payment-status/demo-order` starts pending, `/payment-status/demo-pending` remains pending until expiry, and `/payment-status/demo-failed` checks to a failure. Method selection itself does not run polling or render status screens.
