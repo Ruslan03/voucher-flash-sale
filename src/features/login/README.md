@@ -12,12 +12,20 @@ The hero image is bundled locally and rendered with `next/image`; Material Symbo
 
 - `promotion-panel.tsx`: brand, promotional copy, schedule, and social proof.
 - `voucher-showcase.tsx`: hero image and promotional voucher previews.
-- `login-form.tsx`: phone field and the unavailable OTP action.
+- `login-form.tsx`: interactive phone number input, OTP verification step, cooldown timer, resend OTP, and redirect to flash sale.
 
-Each styled feature file has its own colocated `.module.css`, using existing design tokens. The components remain Server Components because no client state or event handlers are needed. No unused domain, use-case, controller, or infrastructure layers are scaffolded for this visual-only screen.
+Each styled feature file has its own colocated `.module.css`, using existing design tokens.
 
-The Turbopack Tailwind loader targets `globals.css` so that feature CSS Modules retain their scoped class exports. Existing shared styling remains unchanged; migrating shared components is a separate scope.
+## API Integration & Clean Architecture
 
-Verification: `npm test`, `npm run lint`, `npm run build`. The login regression test checks the labelled phone field, disabled OTP state, and promotional content. For visual QA, open `/login` at mobile and desktop widths, check icons and voucher placement, tab through the phone field, and check reduced motion. Browser visual parity is not proven by the automated checks.
+Integrated with the API contract (`docs/api-contract-v1.md`):
+- `POST /auth/v1/otp/request`: Request OTP with phone normalization (`08...`), rate-limit handling (`RATE_LIMITED`), and cooldown response.
+- `POST /auth/v1/otp/verify`: Validate 6-digit OTP code, error handling (`INVALID_OTP` with `attemptsRemaining`), and token persistence (`accessToken`, `refreshToken`, session cookie).
 
-This is a visual setup only. Send OTP is disabled until an authentication API contract is supplied; no OTP is sent or simulated. The existing home page is unchanged.
+Layers:
+- `src/features/auth/domain/`: Phone & OTP normalization, validations, and domain errors (`RateLimitedError`, `InvalidOtpError`, `AuthValidationError`).
+- `src/features/auth/use-cases/`: `requestOtpUseCase`, `verifyOtpUseCase`, `AuthRepository` port interface.
+- `src/features/auth/infrastructure/`: `ApiAuthRepository` (production HTTP adapter adhering strictly to backend contract using `NEXT_PUBLIC_API_URL`).
+- `src/features/auth/controllers/`: Server Actions `requestOtpAction` and `verifyOtpAction` returning `ActionResult<T>`.
+
+Verification: `npm test`, `npm run lint`, `npm run build`. Automated regression tests cover domain validation, use cases, repository adapters, Server Actions, and UI presentation.

@@ -4,17 +4,25 @@ import { describe, expect, it, vi } from 'vitest'
 import { LoginPage } from './login-page'
 
 vi.mock('next/font/local', () => ({ default: () => ({ className: 'test-icons' }) }))
-vi.mock('../../assets/flash-sale-hero.jpg', () => ({ default: { src: '/test-hero.jpg', width: 512, height: 382 } }))
+vi.mock('../../assets/flash-sale-hero.jpg', () => ({
+  default: { src: '/test-hero.jpg', width: 512, height: 382 },
+}))
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    refresh: vi.fn(),
+  }),
+}))
 
 describe('login presentation', () => {
-  it('keeps the phone field labelled and OTP unavailable until integration', () => {
+  it('renders integrated login screen with labelled phone field and ready OTP action', () => {
     const html = renderToStaticMarkup(<LoginPage />)
     expect(html).toContain('for="phone-input"')
     expect(html).toContain('type="tel"')
     expect(html).toMatch(/<button[^>]*disabled=""[^>]*>/)
     expect(html).toContain('aria-describedby="otp-status"')
     expect(html).toContain('id="otp-status"')
-    expect(html).toContain('OTP delivery is not connected yet.')
+    expect(html).toContain('Send OTP')
     expect(html).toContain('Kopi Kenangan')
     expect(html).toContain('Zara / H&amp;M')
     expect(html).toContain('Tokopedia / Gadget')
