@@ -1,0 +1,10 @@
+.showcase { position: relative; z-index: 1; margin: 1rem 0; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.visual { position: relative; width: 100%; max-width: 460px; height: 16rem; display: flex; align-items: center; justify-content: center; }
+.hero { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 16px 32px rgb(0 0 0 / .4)); animation: pulse 2.5s infinite ease-in-out; }
+.food { position: absolute; top: -.75rem; left: 0; max-width: 230px; transform: rotate(-3deg); }
+.fashion { position: absolute; top: 50%; right: -.5rem; max-width: 220px; transform: rotate(2deg); }
+.electronics { position: absolute; bottom: -.75rem; left: 1rem; max-width: 240px; transform: rotate(-1deg); }
+.food:hover, .fashion:hover, .electronics:hover { transform: rotate(0); }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .85; transform: scale(1.03); } }
+@media (min-width: 40rem) { .visual { height: 18rem; } .food { left: -1rem; } .fashion { right: -1.5rem; } .electronics { left: 2.5rem; } }
+@media (prefers-reduced-motion: reduce) { .hero { animation: none; } .food, .fashion, .electronics { transition: none; } }

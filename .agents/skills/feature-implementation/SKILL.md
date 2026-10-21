@@ -14,6 +14,8 @@ description: Implement Next.js frontend features from user stories and acceptanc
 
 ## Workflow
 
+Architecture source: [nextjs-fdd-clean-architecture](../nextjs-fdd-clean-architecture/SKILL.md). Read it before planning feature structure or shared UI changes. It defines FDD/Clean Architecture using `src/features/voucher` as the repository reference, shared Atomic Design under `src/shared/presentation/components/`, and dependency/server-client boundaries. Keep those rules there rather than duplicating them in this workflow.
+
 ### 1. Analyze
 - Read the requirement, acceptance criteria, and relevant code.
 - Identify unclear requirements and API dependencies.
@@ -21,7 +23,7 @@ description: Implement Next.js frontend features from user stories and acceptanc
 
 ### 2. Plan
 - Identify affected files and feature boundaries.
-- Follow project instructions: FDD, Atomic Design, and Clean Architecture.
+- Apply the referenced architecture skill: map changes to the required feature layers and decide whether UI is feature-specific or shared. Do not scaffold unused layers or migrate existing folders outside the requested scope.
 - Keep the plan concise (maximum 5 steps).
 
 ### 3. Test First
@@ -31,7 +33,7 @@ description: Implement Next.js frontend features from user stories and acceptanc
 ### 4. Implement
 - Implement the smallest solution satisfying acceptance criteria.
 - Organize code by business feature.
-- Use Atomic Design for UI composition where appropriate.
+- Place reusable Atomic Design UI under `src/shared/presentation/components/` according to the architecture reference; keep feature compositions in the feature.
 - Separate business logic from presentational components.
 - Reuse existing components and approved dependencies.
 - Avoid unrelated changes and overengineering.
@@ -42,6 +44,7 @@ description: Implement Next.js frontend features from user stories and acceptanc
 - Do not invent endpoints or response structures.
 
 ### 6. Verify
+- Check layer imports, shared component placement, and server/client boundaries against the architecture reference.
 - Run relevant tests, lint, and typecheck when available.
 - Fix failures caused by the implementation.
 - Do not modify unrelated code to make checks pass.

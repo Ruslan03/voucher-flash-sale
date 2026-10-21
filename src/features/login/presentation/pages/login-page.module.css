@@ -1,0 +1,2 @@
+.page { display: flex; flex-direction: column; width: 100%; min-height: 100vh; background: var(--color-surface); font-family: var(--font-plus-jakarta), sans-serif; }
+@media (min-width: 64rem) { .page { flex-direction: row; } }

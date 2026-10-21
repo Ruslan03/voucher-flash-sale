@@ -1,10 +1,9 @@
 ---
 name: nextjs-fdd-clean-architecture
 description: >-
-  Technical architectural blueprint and scaffolding guide for Feature-Driven Development (FDD)
-  and Clean Architecture (Ports & Adapters) in Next.js (App Router). Enforces layer boundaries,
-  port/adapter contracts, and pure DI wiring. STRICTLY focuses on technical structure and code
-  conventions; PROHIBITS generating unsolicited finished UI products or unprompted design systems.
+  Define feature structure, layer boundaries, port/adapter contracts, DI wiring, and shared
+  Atomic Design components in Next.js App Router. Use when scaffolding or implementing
+  features and reusable UI. Does not authorize unsolicited products or design systems.
 ---
 
 # Next.js FDD & Clean Architecture: Structural Blueprint
@@ -12,6 +11,15 @@ description: >-
 This skill defines the **technical folder structure, layer contracts, and coding conventions** for Next.js applications using Feature-Driven Development (FDD) and Clean Architecture (Ports & Adapters / Hexagonal).
 
 It is **100% domain-agnostic and product-agnostic**. It is designed as an architectural contract so that developers and other AI agents can consistently create, navigate, implement, edit, and enhance features without structural ambiguity.
+
+## Scope and repository reference
+
+- **FDD:** organize each business feature as a vertical slice under `src/features/<feature>/`.
+- **Clean Architecture:** separate domain rules, application workflows, adapters, and presentation; keep business logic independent of React, Next.js, and concrete data sources.
+- **Atomic Design:** compose UI primitives into reusable combinations. It describes UI composition, not business layers.
+- Use [`src/features/voucher`](../../../src/features/voucher) as the repository reference for feature folders, naming, repository ports, injected use cases, and controller/result conventions. Inspect the relevant files before adding a feature; do not copy its voucher-specific rules or mock behavior into other features.
+- Create only the layers needed by the request. A static presentation page does not require empty domain, use-case, repository, or controller files.
+- For implementation requests, follow this skill's structural rules and the requested UI/behavior. The skeleton/starter restrictions below apply to scaffolding requests; they do not replace an explicitly requested product screen with a developer starter screen.
 
 ---
 
@@ -39,7 +47,7 @@ It is **100% domain-agnostic and product-agnostic**. It is designed as an archit
 
 ## 1. Directory Structure Blueprint (Agnostic)
 
-Every project and feature MUST adhere to this directory hierarchy:
+Use this hierarchy for the layers required by the feature:
 
 ```text
 src/
@@ -68,17 +76,29 @@ src/
 │       ├── controllers/                  # Interface adapters
 │       │   └── <feature>-controller.ts   # Server Actions ('use server') & route adapters
 │       └── presentation/                 # Presentation entrypoint
+│           ├── components/              # Feature UI with colocated *.module.css
 │           └── pages/
-│               └── <feature>-page.tsx    # Structural container (Server Component)
+│               ├── <feature>-page.tsx    # Structural container (Server Component)
+│               └── <feature>-page.module.css # Page-owned styles
 │
 └── shared/                               # Cross-cutting reusable technical capabilities
     ├── domain/
     │   ├── result.ts                     # Standardized ActionResult<T> DTO pattern
     │   └── domain-event-bus.ts           # Decoupled async pub/sub event bus
-    └── infrastructure/
-        └── http/
-            └── http-client.ts            # Centralized fetch wrapper (error handling & timeout)
+    ├── infrastructure/
+    │   └── http/
+    │       └── http-client.ts            # Centralized fetch wrapper (error handling & timeout)
+    └── presentation/
+        ├── components/                  # All shared Atomic Design components live here
+        │   ├── atoms/                   # Button, Input, Icon, Badge
+        │   ├── molecules/               # FormField, PhoneNumberField, VoucherPreview
+        │   ├── organisms/               # Optional reusable multi-part UI sections
+        │   └── templates/               # Optional reusable page layouts with slots
+        ├── assets/                      # Shared fonts and other presentation assets
+        └── README.md                    # Usage and component conventions
 ```
+
+The shared `components/` wrapper is the target convention. If existing code uses `shared/presentation/atoms/` or `molecules/` directly, do not add another competing structure. Migrate existing components only when the requested scope includes it, updating imports, relative font/CSS paths, tests, and documentation together. Updating this skill alone does not authorize migrating application code.
 
 ---
 
@@ -98,9 +118,56 @@ Dependencies MUST always point strictly inward:
 | **`use-cases/`** | Application workflows & **Port Interfaces** | `domain/`, Port interfaces, `@/shared/domain` | React, Next.js, concrete infrastructure classes, controllers |
 | **`infrastructure/`** | Concrete adapters implementing ports | Port interfaces, `domain/`, `@/shared/infrastructure` | React, Next.js App Router, controllers, UI components |
 | **`controllers/`** | Adapting requests to use cases (Server Actions) | Use Cases, Domain, `@/composition/registry`, `result.ts` | Raw DB queries, UI presentation components |
-| **`presentation/`** | Structural view container | Domain types, Controller actions | Raw DB queries, HTTP clients, internal infra |
-| **`composition/`** | Instantiating infra and binding to use case ports | Infrastructure, Use Cases (Ports), Controllers | App router pages |
+| **Feature `presentation/`** | Feature pages, UI composition and interaction state | Shared presentation, domain types, controller actions; server pages may compose reads as described below | Concrete infrastructure, direct HTTP/DB access; server-only imports in client components |
+| **Shared `presentation/`** | Reusable UI without feature orchestration | React, shared presentation components/assets, shared design tokens | Features, controllers, composition, data fetching and business workflows |
+| **`composition/`** | Instantiating infra and binding to use case ports | Infrastructure, Use Cases (Ports) | Controllers, presentation, app router pages (avoid circular dependencies) |
 | **`app/`** | Next.js route entrypoint shell | Presentation pages, Controllers | Direct DB queries, business domain logic |
+
+### 2.1 Server reads and client interactions
+
+- A Server Component page may resolve a repository through `composition/registry.ts` and call a read use case, following `voucher/presentation/pages/voucher-page.tsx`. This is server-side orchestration, not permission to import a concrete adapter or implement business rules in the page.
+- Mutations and requests needing `ActionResult` error mapping go through controllers. Controllers resolve dependencies, call use cases, and adapt results/revalidation; use cases own workflows.
+- Client components use props and controller actions. Keep registry, secrets, concrete adapters, and server-only modules out of client imports. Add `use client` only where interaction/state needs it.
+- Feature-specific validation rules, API calls, price calculations, and state orchestration stay in the feature. A shared input may display an error supplied by its caller; it does not decide business validity.
+
+### 2.2 Atomic Design placement and composition
+
+| Level | Responsibility | Repository examples / placement |
+|---|---|---|
+| **Atoms** | Small UI primitives; native HTML props and accessible defaults | `components/atoms/button.tsx`, `input.tsx`, `icon.tsx`, `badge.tsx` |
+| **Molecules** | A small combination of atoms solving one UI task | `components/molecules/form-field.tsx`, `phone-number-field.tsx`, `voucher-preview.tsx` |
+| **Organisms** | A cohesive reusable section composed from atoms/molecules | `components/organisms/`, only when such a shared section exists |
+| **Templates** | Reusable layout structure accepting content through props/slots | `components/templates/`, only when needed by multiple pages |
+| **Pages** | Concrete feature composition, content, and orchestration | `features/<feature>/presentation/pages/`, never shared Atomic Design pages |
+
+- Atoms may compose other atoms; molecules compose atoms; organisms compose atoms/molecules; templates compose reusable sections. Avoid circular imports or dependencies from lower levels into higher levels.
+- Keep UI tied to a particular feature in `features/<feature>/presentation/components/`. Promote it to shared when it has a clear reusable presentation contract, not merely because it is JSX.
+- Do not create empty levels or generic component frameworks. Reuse the current primitives before adding variants or extracting a new abstraction.
+- Import directly from the component file, e.g. `@/shared/presentation/components/atoms/button`. Keep local assets under shared presentation; shared components must not import fonts or styles from a feature.
+- Reuse existing CSS tokens and native React element props, including accessibility attributes and refs where applicable. Keep `id`, label, hint, and error associations intact. Icons are decorative by default and need an accessible label when conveying standalone meaning.
+### 2.3 Presentation styling: colocated CSS Modules
+
+- Every styled presentation slice (atom, molecule, organism, template, feature component, or page) owns a colocated `<file-name>.module.css`. Import it as `styles` and use `className={styles.className}`.
+- Put layout, typography, colors, spacing, responsive rules, animations, and visual states in that module. Do not use JSX `style={{ ... }}`, inline CSS custom properties, `<style>` tags, utility classes, or component-specific global CSS as substitutes.
+- A routing shell or composition with no owned styles does not need an empty module. When slicing a styled component into a separate file, move its owned rules into its own module; do not depend on the parent's private module.
+- Reserve `app/globals.css` for tokens, font foundations, and base/reset rules. Consume existing tokens through `var(--...)` in modules rather than duplicating their values.
+- Use module classes or `data-*` attributes for finite variants and states, e.g. `.button[data-variant='primary']` and `.input[aria-invalid='true']`. For computed values, prefer native attributes such as `<progress value={value} max={max} className={styles.progress} />` over inline styles. Surface a styling constraint before introducing an exception.
+- Shared components may accept `className` from the caller's CSS Module. Do not import feature modules into shared components or target child internals with broad/global selectors. Shared assets remain under `shared/presentation/assets/`.
+- Preserve keyboard focus, disabled/error states, responsive behavior, and reduced-motion preferences in the owning module. Font classes generated by `next/font` can be combined with module classes.
+- Verify that the installed styling pipeline preserves CSS Module class exports. If a loader strips module scoping, report or fix the pipeline within the authorized scope; do not silently fall back to global classes.
+- Existing global/inline-styled presentation code requires a scoped migration. Updating this skill does not itself authorize changing application code.
+
+```text
+src/shared/presentation/components/atoms/
+├── button.tsx
+└── button.module.css
+src/features/<feature>/presentation/components/
+├── promotion-panel.tsx
+└── promotion-panel.module.css
+src/features/<feature>/presentation/pages/
+├── <feature>-page.tsx
+└── <feature>-page.module.css
+```
 
 ---
 
@@ -250,103 +317,63 @@ export async function getEntityAction(id: string): Promise<ActionResult<Entity>>
 ```
 
 ### 3.6 Presentation Starter Page (`features/<feature>/presentation/pages/`)
-- Server Component. Renders an informative developer starter screen (similar to a fresh `create-next-app` install) explaining the layers and where to edit code.
-- Zero external UI dependencies (pure inline styling or basic CSS).
-- NO speculative business products (no carts, no checkout, no dummy shop widgets).
+- This starter applies to scaffolding only. Implement requested screens with the same boundaries; do not copy starter content into product pages.
+- Use a Server Component and a colocated CSS Module. Show the layers and where to edit code, without speculative product widgets or external UI dependencies.
 
 ```tsx
+// <feature>-page.tsx
 import { createEntityRepository } from '@/composition/registry'
 import { getEntityById } from '../../use-cases/get-<entity>'
+import styles from './<feature>-page.module.css'
 
-interface FeaturePageProps {
-  id?: string
-}
+interface FeaturePageProps { id?: string }
+
+const layers = [
+  ['Domain', 'Entity types and invariants in domain/.'],
+  ['Use Cases', 'Workflows and ports in use-cases/.'],
+  ['Infrastructure', 'Concrete adapters in infrastructure/.'],
+  ['Controllers', 'Server Actions and result mapping in controllers/.'],
+]
 
 export async function FeaturePage({ id = 'default' }: FeaturePageProps) {
-  const repo = createEntityRepository()
-  const data = await getEntityById(repo, id)
-
+  const data = await getEntityById(createEntityRepository(), id)
   return (
-    <main style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      padding: '2rem 1.5rem',
-      backgroundColor: '#0a0a0a',
-      color: '#ededed',
-      boxSizing: 'border-box'
-    }}>
-      <div style={{ maxWidth: '640px', width: '100%', textAlign: 'center' }}>
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          padding: '0.25rem 0.85rem',
-          borderRadius: '9999px',
-          background: 'rgba(255, 255, 255, 0.08)',
-          border: '1px solid rgba(255, 255, 255, 0.15)',
-          fontSize: '0.85rem',
-          color: '#a1a1aa',
-          marginBottom: '1.25rem'
-        }}>
-          <span>⚡</span>
-          <span>Clean Architecture &bull; Feature Ready</span>
+    <main className={styles.page}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Feature ready: {data.name}</h1>
+        <p>Add business rules and UI in the corresponding layers.</p>
+        <div className={styles.layers}>
+          {layers.map(([name, description]) => (
+            <section key={name} className={styles.layer}>
+              <h2>{name}</h2>
+              <p>{description}</p>
+            </section>
+          ))}
         </div>
-
-        <h1 style={{ fontSize: '2.25rem', fontWeight: 700, margin: '0 0 0.75rem', letterSpacing: '-0.025em' }}>
-          Feature <span style={{ color: '#38bdf8' }}>{data.title}</span>
-        </h1>
-
-        <p style={{ fontSize: '1rem', color: '#a1a1aa', margin: '0 0 2rem', lineHeight: 1.5 }}>
-          Kerangka arsitektur terpasang. Gunakan petunjuk di bawah untuk mengimplementasikan logika bisnis dan UI.
-        </p>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: '0.85rem',
-          textAlign: 'left',
-          marginBottom: '2rem'
-        }}>
-          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '0.75rem', padding: '1rem' }}>
-            <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, textTransform: 'uppercase' }}>1. Domain</span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Atur entity model &amp; aturan bisnis di <code>domain/</code>
-            </p>
-          </div>
-
-          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '0.75rem', padding: '1rem' }}>
-            <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, textTransform: 'uppercase' }}>2. Use Cases</span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Definisikan kontrak port &amp; use case di <code>use-cases/</code>
-            </p>
-          </div>
-
-          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '0.75rem', padding: '1rem' }}>
-            <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, textTransform: 'uppercase' }}>3. Infrastructure</span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Implementasi API / Database adapters di <code>infrastructure/</code>
-            </p>
-          </div>
-
-          <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '0.75rem', padding: '1rem' }}>
-            <span style={{ fontSize: '0.75rem', color: '#38bdf8', fontWeight: 600, textTransform: 'uppercase' }}>4. Controllers</span>
-            <p style={{ margin: '0.35rem 0 0', fontSize: '0.85rem', color: '#d4d4d8' }}>
-              Server Actions penghubung UI di <code>controllers/</code>
-            </p>
-          </div>
-        </div>
-
-        <div style={{ padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.04)', borderRadius: '0.5rem', fontSize: '0.85rem', color: '#71717a' }}>
-          Status Entity: <strong style={{ color: '#34d399' }}>{data.status}</strong> &bull; Title: <code>{data.title}</code>
-        </div>
+        <p className={styles.status}>Entity status: {data.status}</p>
       </div>
     </main>
   )
 }
+```
+
+```css
+/* <feature>-page.module.css */
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: var(--surface-muted);
+  color: var(--secondary-navy);
+}
+.content { width: 100%; max-width: 40rem; }
+.title { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+.layers { display: grid; gap: 1rem; margin: 1.5rem 0; }
+.layer { padding: 1rem; border: 1px solid var(--border-default); border-radius: var(--radius-lg); }
+.layer h2 { font-weight: 700; margin-bottom: .5rem; }
+.status { color: var(--neutral-core); }
+@media (min-width: 40rem) { .layers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 ```
 
 ### 3.7 Routing Shell (`src/app/<route>/page.tsx`)
@@ -387,6 +414,14 @@ When an AI assistant is tasked with creating, enhancing, or modifying code withi
 - When the user provides UI requirements or wireframes:
   - Add presentational components inside `presentation/components/`.
   - Connect user interactions via controllers / Server Actions (`presentation/pages/`).
+  - Reuse shared atoms/molecules from `shared/presentation/components/`; keep feature-specific compositions in the feature.
+
+### Architecture verification
+- Confirm styled presentation slices have colocated CSS Modules, no inline or utility-class styling, and no new component rules in global CSS. Check module exports, responsive layout, focus/error states, and reduced motion.
+- Check new imports against the layer table, including server/client boundaries and the server-read exception.
+- Confirm shared Atomic Design components use the `components/` wrapper and do not depend on features. Record any pre-existing paths that remain outside a migration's scope.
+- Run behavior tests for business/interaction changes and the relevant lint/typecheck/build scripts. Verify visual-only changes visually when possible; report unavailable browser checks.
+- When moving components, check all import callers, relative assets/CSS, tests, README examples, and `/design-system` usage snippets. Do not equate a green build with verified visual parity or real backend integration.
 
 ---
 
@@ -396,3 +431,5 @@ To generate a clean technical skeleton without any unsolicited UI or dummy styli
 ```bash
 node .agents/skills/nextjs-fdd-clean-architecture/scripts/create-feature.mjs <feature-name> [entity-name]
 ```
+
+Inspect generated presentation output before using it. If the scaffolder emits inline styles, replace them with a colocated CSS Module following section 2.3; generated output does not override the styling contract.

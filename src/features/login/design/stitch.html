@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PromoRush - Sign In | Mega Voucher Flash Sale</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-high": "#e0e9f2",
+            "tertiary-container": "#c03e05",
+            "secondary-fixed-dim": "#b9c6ea",
+            "primary-fixed": "#ffdad7",
+            "secondary": "#525e7d",
+            "on-secondary-fixed": "#0d1b36",
+            "surface-container-low": "#ecf5fe",
+            "on-secondary-container": "#525f7e",
+            "surface-container": "#e6eff8",
+            "secondary-container": "#cdd9fe",
+            "on-error": "#ffffff",
+            "secondary-fixed": "#d9e2ff",
+            "primary-fixed-dim": "#ffb3ae",
+            "surface-container-highest": "#dbe4ed",
+            "error": "#ba1a1a",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb59d",
+            "outline": "#926e6c",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#982e00",
+            "surface-bright": "#f6faff",
+            "on-surface": "#141d23",
+            "inverse-primary": "#ffb3ae",
+            "surface-dim": "#d2dbe4",
+            "tertiary-fixed": "#ffdbd0",
+            "inverse-surface": "#293138",
+            "on-background": "#141d23",
+            "on-tertiary-fixed": "#390c00",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#ffe8e1",
+            "on-tertiary-fixed-variant": "#832600",
+            "on-primary-container": "#ffe7e5",
+            "surface-variant": "#dbe4ed",
+            "on-primary-fixed": "#410004",
+            "error-container": "#ffdad6",
+            "surface": "#f6faff",
+            "background": "#f6faff",
+            "on-surface-variant": "#5d3f3d",
+            "primary-container": "#d70324",
+            "surface-tint": "#c0001e",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed-variant": "#3a4664",
+            "inverse-on-surface": "#e9f2fb",
+            "primary": "#aa0019",
+            "on-primary-fixed-variant": "#930015",
+            "outline-variant": "#e7bcb9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin-desktop": "2rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "space-xl": "1.5rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "price-original": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "price-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "timer-digit": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "price-xl": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-caps": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.005em", "fontWeight": "500" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "price-original": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "display-hero-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "price-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "timer-digit": ["14px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "800" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "price-xl": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-caps": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .ticket-perforation {
+      background-image: radial-gradient(circle at 0 50%, transparent 6px, #ffffff 6px),
+                        radial-gradient(circle at 100% 50%, transparent 6px, #ffffff 6px);
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.03); }
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 2.5s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen selection:bg-primary-fixed selection:text-primary">
+<!-- Desktop Authentication Screen Layout (50/50 Viewport) -->
+<main class="w-full min-h-screen flex flex-col lg:flex-row bg-surface">
+<!-- LEFT HALF: PROMOTIONAL FLASH SALE SHOWCASE PANEL -->
+<section class="lg:w-1/2 w-full relative overflow-hidden bg-gradient-to-br from-[#8a0014] via-[#AA0019] to-[#141D23] text-surface-container-lowest p-8 lg:p-12 flex flex-col justify-between">
+<!-- Subtle Decorative Ticket Lattice & Glow -->
+<div class="absolute inset-0 pointer-events-none opacity-10 bg-[radial-gradient(#ffffff_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary-container rounded-full blur-[100px] opacity-40 pointer-events-none"></div>
+<div class="absolute bottom-10 right-10 w-80 h-80 bg-[#FF6B35] rounded-full blur-[110px] opacity-25 pointer-events-none"></div>
+<!-- Left Panel Header: Brand + Certified Badge -->
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-xl bg-surface-container-lowest flex items-center justify-center shadow-lg text-primary-container">
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg tracking-tight font-black leading-none text-surface-container-lowest">PromoRush</span>
+<span class="font-label-caps text-label-caps text-primary-fixed tracking-wider">INDONESIA FLASH MARKET</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest/15 backdrop-blur-md border border-white/20 text-surface-container-lowest font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-sm text-green-300" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="">Verified Platform</span>
+</div>
+</div>
+<!-- Core Hero Message & Schedule Pill -->
+<div class="relative z-10 mt-8 mb-4 max-w-xl">
+<!-- Rush Schedule Badge -->
+<div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#141d23]/80 border border-white/20 shadow-sm backdrop-blur-sm mb-4">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF6B35]"></span>
+</span>
+<span class="font-timer-digit text-timer-digit text-surface-container-lowest tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">schedule</span>
+            Every Saturday, 12:00–12:15 WIB
+          </span>
+</div>
+<h1 class="font-display-hero text-display-hero text-surface-container-lowest tracking-tight">
+          Mega Voucher <br>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ffe7e5] via-[#ffdad7] to-[#FF9E7D]">Flash Sale</span>
+</h1>
+<!-- Fast Feature Bullets -->
+<div class="mt-4 flex flex-wrap gap-2.5 text-surface-container-lowest font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed">local_fire_department</span>
+<span class="">Up to 90% OFF Top Brands</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">timelapse</span>
+<span class="">15-Minute Rush Window</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 backdrop-blur-xs border border-white/10">
+<span class="material-symbols-outlined text-[16px] text-emerald-300">flash_on</span>
+<span class="">Instant Digital Voucher Claim</span>
+</div>
+</div>
+</div>
+<!-- Central Visual Asset & Floating Live Voucher Showcase -->
+<div class="relative z-10 my-4 flex-1 flex flex-col justify-center items-center">
+<!-- Main Graphic Container -->
+<div class="relative w-full max-w-[460px] h-64 sm:h-72 flex items-center justify-center">
+<img alt="PromoRush Mega Voucher Celebration Visual with exploding flash sale coupons and shopping gift box" class="w-full h-full object-contain filter drop-shadow-[0_16px_32px_rgba(0,0,0,0.4)] animate-pulse-subtle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFTjb5B4oHOKFehp4NppKDlsDzXDZJ9kY0juwEE4pL6Wz91G3uW_0dlq2cRldxo8QDycywTDO7fO95lo1wmuHYEO6mZGozMN6HslXM51wYA25A0oDPzMlVXVnW6_1IcSM_lKMl6SIW2vfIn0w_93A_6_tBUP8_yc337dH7qvb9W8LoYG18R0kYjFh-tZUDTE7Wsz3Fjppd0OQZpC1hAsstZ_Dh9MrKu4WLw8RWMVUpdWTua9XJrE868w">
+<!-- Floating Floating Interactive Preview Voucher: F&B -->
+<div class="absolute -top-3 left-0 sm:-left-4 bg-surface-container-lowest text-on-surface p-2.5 px-3 rounded-xl shadow-xl border border-surface-container-high max-w-[230px] flex items-center gap-2 transform -rotate-3 hover:rotate-0 transition-transform">
+<div class="w-8 h-8 rounded-lg bg-[#FF6B35]/15 text-[#FF6B35] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div class="leading-tight">
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-[11px] font-bold text-on-surface truncate">Kopi Kenangan</span>
+<span class="bg-[#FF6B35] text-white font-label-caps text-[9px] px-1 rounded">90% OFF</span>
+</div>
+<p class="font-body-sm text-[11px] text-secondary">Rp50,000 → <strong class="text-primary-container font-extrabold">Rp5,000</strong></p>
+</div>
+</div>
+<!-- Floating Interactive Preview Voucher: Fashion -->
+<div class="absolute top-1/2 -right-2 sm:-right-6 bg-surface-container-lowest text-on-surface p-2.5 px-3 rounded-xl shadow-xl border border-surface-container-high max-w-[220px] flex items-center gap-2 transform rotate-2 hover:rotate-0 transition-transform">
+<div class="w-8 h-8 rounded-lg bg-[#E01A67]/15 text-[#E01A67] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">checkroom</span>
+</div>
+<div class="leading-tight">
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-[11px] font-bold text-on-surface">Zara / H&amp;M</span>
+<span class="bg-[#E01A67] text-white font-label-caps text-[9px] px-1 rounded">62% OFF</span>
+</div>
+<p class="font-body-sm text-[11px] text-secondary">Rp200,000 → <strong class="text-[#E01A67] font-extrabold">Rp75,000</strong></p>
+</div>
+</div>
+<!-- Floating Interactive Preview Voucher: Electronics -->
+<div class="absolute -bottom-3 left-4 sm:left-10 bg-surface-container-lowest text-on-surface p-2.5 px-3 rounded-xl shadow-xl border border-surface-container-high max-w-[240px] flex items-center gap-2 transform -rotate-1 hover:rotate-0 transition-transform">
+<div class="w-8 h-8 rounded-lg bg-[#0066FF]/15 text-[#0066FF] flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">devices</span>
+</div>
+<div class="leading-tight">
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-[11px] font-bold text-on-surface">Tokopedia / Gadget</span>
+<span class="bg-[#0066FF] text-white font-label-caps text-[9px] px-1 rounded">SAVER</span>
+</div>
+<p class="font-body-sm text-[11px] text-secondary">Rp500,000 → <strong class="text-[#0066FF] font-extrabold">Rp350,000</strong></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Left Panel Footer Social Proof -->
+<div class="relative z-10 pt-4 border-t border-white/15 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-primary-fixed">
+<span class="material-symbols-outlined text-[20px]">redeem</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-container-highest/90">
+          Over <strong class="text-surface-container-lowest font-bold">250,000+ vouchers</strong> redeemed every Saturday across Jakarta, Surabaya, &amp; Bandung.
+        </p>
+</div>
+</section>
+<!-- RIGHT HALF: CLEAN, TRUSTWORTHY AUTHENTICATION CARD -->
+<section class="lg:w-1/2 w-full bg-surface-container-low flex flex-col justify-between p-6 sm:p-10 lg:p-14">
+<!-- Top Right Utility Navigation -->
+
+<!-- Centered Sign-in Container -->
+<div class="w-full max-w-md mx-auto my-auto py-4">
+<!-- Header -->
+<div class="mb-8">
+<div class="inline-flex items-center gap-1 text-primary-container font-label-caps text-label-caps mb-2">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="">EXCLUSIVE FLASH ACCESS</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg font-extrabold text-[#14213D] tracking-tight">
+            Sign in to PromoRush
+          </h2>
+<p class="font-body-md text-body-md text-secondary mt-1.5">
+            Enter your mobile phone number to receive a one-time verification code (OTP).
+          </p>
+</div>
+<!-- Auth Method Tabs -->
+
+<!-- Login Form -->
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-headline-sm text-xs font-bold text-[#14213D] mb-1.5" for="phone-input">
+              Mobile Phone Number
+            </label>
+<div class="relative flex rounded-xl border-1.5 border-surface-container-high bg-surface-container-lowest shadow-xs focus-within:ring-2 focus-within:ring-primary-container/20 focus-within:border-primary-container transition-all">
+<!-- Fixed Indonesia +62 Prefix Block -->
+<div class="flex items-center gap-1.5 px-3.5 bg-surface-container-low border-r border-surface-container-high rounded-l-xl select-none">
+<!-- Indonesia Flag SVG -->
+<div class="w-5 h-3.5 rounded-xs overflow-hidden border border-black/10 flex flex-col flex-shrink-0 shadow-2xs">
+<span class="bg-[#E70011] w-full h-1/2"></span>
+<span class="bg-white w-full h-1/2"></span>
+</div>
+<span class="font-headline-sm text-xs font-bold text-[#14213D] tracking-tight">+62</span>
+</div>
+<!-- Input Canvas -->
+<input autocomplete="tel-national" class="w-full px-3.5 py-3 rounded-r-xl border-none font-body-lg text-sm text-[#14213D] placeholder:text-secondary/60 focus:ring-0 focus:outline-none" id="phone-input" inputmode="numeric" placeholder="e.g. 812-3456-7890" required="" type="tel">
+<div class="flex items-center pr-3.5 text-secondary">
+<span class="material-symbols-outlined text-[20px]">smartphone</span>
+</div>
+</div>
+<!-- Helper Caption -->
+<p class="font-body-sm text-[12px] text-secondary mt-1.5 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary-container">info</span>
+              We'll send an SMS or WhatsApp OTP verification code.
+            </p>
+</div>
+<!-- Primary CTA Button (High velocity urgency & flash glow) -->
+<button class="w-full h-12 bg-primary-container hover:bg-[#b8021e] active:scale-[0.99] text-on-primary font-headline-sm text-sm font-bold rounded-xl shadow-[0_4px_14px_rgba(215,3,36,0.25)] flex items-center justify-center gap-2 transition-all duration-150 mt-2" type="submit">
+<span class="">Send OTP</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+
+<!-- Alternative Fast Social Logins -->
+
+<!-- Terms Agreement Disclaimer -->
+
+</div>
+<!-- Trust & Institutional Security Badges (FinTech Grade) -->
+
+</section>
+</main>
+
+
+
+
+</body></html>
