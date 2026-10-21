@@ -1,0 +1,4 @@
+.heading { margin-bottom: 30px; }
+.heading span { display: inline-block; background: #fff0f3; color: #e31e45; border-radius: 99px; padding: 6px 13px; font-size: 11px; font-weight: 800; letter-spacing: .7px; text-transform: uppercase; }
+.heading h1 { font-size: clamp(28px, 3vw, 38px); font-weight: 800; line-height: 1.2; letter-spacing: -1px; margin: 16px 0 12px; color: #151c2b; }
+.heading p { color: #667085; line-height: 1.7; font-size: 14px; max-width: 620px; }

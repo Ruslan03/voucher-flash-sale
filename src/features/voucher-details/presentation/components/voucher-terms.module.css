@@ -1,0 +1,9 @@
+.panel { background: white; border: 1px solid #e7e9ee; border-radius: 16px; padding: 24px; }
+.panel h2 { display: flex; gap: 10px; align-items: center; margin: 0 0 24px; font-size: 18px; font-weight: 700; }
+.panel h2 span { color: #ed2346; }
+.panel ol { list-style: none; counter-reset: terms; padding: 0; margin: 0; }
+.panel li { position: relative; counter-increment: terms; padding: 0 0 18px 36px; font-size: 13px; }
+.panel li::before { content: counter(terms); position: absolute; left: 0; top: 0; background: #f1f3f7; border-radius: 50%; width: 23px; height: 23px; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #667085; }
+.panel li:last-child { padding-bottom: 0; }
+.panel strong { font-size: 12px; }
+.panel p { color: #667085; line-height: 1.7; margin: 5px 0 0; }

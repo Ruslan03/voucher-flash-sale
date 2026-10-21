@@ -2,10 +2,10 @@
 
 Komponen presentasi mengikuti Atomic Design sesuai kebutuhan, tanpa memaksakan semua level.
 
-Katalog visual tersedia di `/design-system`: token warna, tipografi, bentuk, seluruh atom/molekul, contoh state, dan potongan kode penggunaan. Jalankan `npm run dev` lalu buka halaman tersebut. Input dapat dicoba dan contoh kode dibuka lewat “View usage”; tombol demo tidak mengirim data.
+Katalog visual tersedia di `/design-system`: token warna, tipografi, bentuk, atom/molekul awal, contoh state, dan potongan kode penggunaan. Jalankan `npm run dev` lalu buka halaman tersebut. Input dapat dicoba dan contoh kode dibuka lewat “View usage”; tombol demo tidak mengirim data.
 
 - `components/atoms/`: `Icon`, `Button`, `Input`, `Badge`, `Progress`.
-- `components/molecules/`: `FormField`, `PhoneNumberField`, `VoucherPreview`, `OtpInput`, `CategoryFilter`.
+- `components/molecules/`: `FormField`, `PhoneNumberField`, `VoucherPreview`, `OtpInput`, `CategoryFilter`, `Breadcrumbs`, `Modal`.
 - `assets/`: font Material Symbols lokal yang dipakai `Icon`.
 - `shared.css`: gaya dengan prefix `ui-`, memakai token dari `app/globals.css`.
 
@@ -34,3 +34,5 @@ import { PhoneNumberField } from '@/shared/presentation/components/molecules/pho
 Komposisi halaman, state form, API, dan aturan bisnis tetap di `features/`. `PhoneNumberField` dan `OtpInput` adalah client boundary untuk interaksi input; orchestration tetap di komponen client milik feature. Tidak ada library UI tambahan.
 
 Verifikasi: `npm test`, `npm run lint`, `npm run build`. Acuan visual: screen login Stitch `49dcdf43d73e4d0a9c877d582cbbe579` pada project `14051200829858170119`; HTML dan gambar yang sudah diunduh tersedia di `features/login/design/` dan `features/login/assets/`.
+
+`Breadcrumbs` menerima `items: { label, href? }[]`, menggunakan Next Link dan `aria-current` untuk halaman aktif. `Modal` menerima `open`, `title`, `onClose`, dan `children`; native dialog menyediakan focus containment, sementara Escape diteruskan ke `onClose`. Keduanya memakai CSS Module dan tidak mengimpor feature. Contoh pemakaian ada di halaman voucher details. `lib/commerce-format.ts` menyediakan formatter Rupiah, countdown, dan tanggal/WIB untuk presentation.

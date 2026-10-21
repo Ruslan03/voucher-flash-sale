@@ -1,0 +1,5 @@
+.nav { color: #667085; font-size: 13px; margin-bottom: 28px; }
+.nav ol { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.nav li + li::before { content: '/'; margin-right: 10px; color: #b1b5bc; }
+.nav a { color: #d31e3a; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }

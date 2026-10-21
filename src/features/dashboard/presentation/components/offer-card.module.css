@@ -22,3 +22,6 @@
 .action.action:disabled { background: var(--color-surface-container-high); color: var(--color-secondary); box-shadow: none; cursor: not-allowed; }
 .actionIcon { font-size: 16px; }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+
+.details { display: block; text-align: center; font-size: 12px; font-weight: 600; color: #d91f40; padding-top: 12px; text-decoration: none; }
+.details:hover { text-decoration: underline; }

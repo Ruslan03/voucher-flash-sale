@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { DashboardOffer, OfferState } from '../../domain/dashboard'
 import { Button } from '@/shared/presentation/components/atoms/button'
 import { Icon } from '@/shared/presentation/components/atoms/icon'
@@ -21,7 +22,7 @@ export function OfferCard({ offer, state, onPurchase }: { offer: DashboardOffer;
         <div className={styles.price}><div><small>Nilai Promo</small><strong>Hemat {formatRupiah(offer.originalPrice - offer.price)}</strong></div><div><del>{formatRupiah(offer.originalPrice)}</del><b>Bayar {formatRupiah(offer.price)}</b></div></div>
         <div className={styles.stock}><span>{state === 'sold-out' ? 'Seluruh kuota telah terklaim' : `Sisa ${offer.remainingQuota.toLocaleString('id-ID')} / ${offer.totalQuota.toLocaleString('id-ID')} kupon`}</span><Progress aria-label={`Kuota terpakai ${offer.merchant}`} value={offer.totalQuota - offer.remainingQuota} max={offer.totalQuota} /></div>
       </div>
-      <div className={styles.bottom}><Button className={styles.action} disabled={state !== 'available'} onClick={() => onPurchase(offer.id)}><Icon name={state === 'available' ? 'bolt' : 'lock'} className={styles.actionIcon} />{buttonLabel}</Button></div>
+      <div className={styles.bottom}><Button className={styles.action} disabled={state !== 'available'} onClick={() => onPurchase(offer.id)}><Icon name={state === 'available' ? 'bolt' : 'lock'} className={styles.actionIcon} />{buttonLabel}</Button><Link className={styles.details} href={`/vouchers/${offer.id}`}>Lihat Detail</Link></div>
     </article>
   )
 }

@@ -1,8 +1,10 @@
+import type { VoucherDetailsRepository } from '@/features/voucher-details/use-cases/voucher-details-repository'
+import { DemoVoucherDetailsRepository } from '@/features/voucher-details/infrastructure/demo-voucher-details-repository'
 /**
  * COMPOSITION ROOT — Dependency Injection Registry
  * The single source of truth for instantiating infrastructure adapters
  * and binding them to use case port interfaces.
- * Production ready: strictly connects to API infrastructure adapters.
+ * API adapters and explicitly named local preview adapters are wired here.
  */
 
 import type { VoucherRepository } from '@/features/voucher/use-cases/voucher-repository'
@@ -26,3 +28,6 @@ export function createAuthRepository(): AuthRepository {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL || ''
   return new ApiAuthRepository(baseUrl)
 }
+
+/** Explicit local voucher-details preview adapter. */
+export function createVoucherDetailsRepository(): VoucherDetailsRepository { return new DemoVoucherDetailsRepository() }

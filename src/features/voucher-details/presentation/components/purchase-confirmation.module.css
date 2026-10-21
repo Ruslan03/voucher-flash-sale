@@ -1,0 +1,5 @@
+.summary { background: #f9fafb; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+.summary strong { display: block; font-size: 15px; }
+.summary b { display: block; color: #ed2448; font-size: 28px; margin-top: 12px; }
+.summary p { color: #667085; font-size: 12px; line-height: 1.7; }
+.confirm { width: 100%; }
