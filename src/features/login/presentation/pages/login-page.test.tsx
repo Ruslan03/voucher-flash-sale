@@ -12,11 +12,18 @@ vi.mock('next/navigation', () => ({
     push: vi.fn(),
     refresh: vi.fn(),
   }),
+  useSearchParams: () => new URLSearchParams(),
 }))
+
+import { RootProvider } from '@/composition/store/provider'
 
 describe('login presentation', () => {
   it('renders integrated login screen with labelled phone field and ready OTP action', () => {
-    const html = renderToStaticMarkup(<LoginPage />)
+    const html = renderToStaticMarkup(
+      <RootProvider>
+        <LoginPage />
+      </RootProvider>
+    )
     expect(html).toContain('for="phone-input"')
     expect(html).toContain('type="tel"')
     expect(html).toMatch(/<button[^>]*disabled=""[^>]*>/)

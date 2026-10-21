@@ -9,11 +9,18 @@ vi.mock('next/navigation', () => ({
     push: vi.fn(),
     refresh: vi.fn(),
   }),
+  useSearchParams: () => new URLSearchParams(),
 }))
+
+import { RootProvider } from '@/composition/store/provider'
 
 describe('LoginForm Component', () => {
   it('renders initial phone number entry step with accessible attributes', () => {
-    const html = renderToStaticMarkup(<LoginForm />)
+    const html = renderToStaticMarkup(
+      <RootProvider>
+        <LoginForm />
+      </RootProvider>
+    )
 
     expect(html).toContain('Sign in to PromoRush')
     expect(html).toContain('Mobile Phone Number')

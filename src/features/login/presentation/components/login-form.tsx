@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useEffect, useState, useTransition } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import OtpInput from 'react-otp-input'
 import { Icon } from '@/shared/presentation/components/atoms/icon'
 import { Button } from '@/shared/presentation/components/atoms/button'
 import { PhoneNumberField } from '@/shared/presentation/components/molecules/phone-number-field'
 import { requestOtpAction, verifyOtpAction } from '@/features/auth/controllers/auth-controller'
+import { useAppDispatch, setCredentials } from '@/composition/store'
 import styles from './login-form.module.css'
 
 function formatMaskedPhone(raw: string): string {
@@ -31,6 +32,9 @@ function formatTimer(seconds: number): string {
 
 export function LoginForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTarget = searchParams?.get('redirect') || searchParams?.get('returnUrl') || '/dashboard'
+  const dispatch = useAppDispatch()
   const [isPending, startTransition] = useTransition()
 
   const [step, setStep] = useState<'phone' | 'otp' | 'success'>('phone')
@@ -74,11 +78,19 @@ export function LoginForm() {
     startTransition(async () => {
       const res = await verifyOtpAction(phone, otp)
       if (res.success) {
+        dispatch(
+          setCredentials({
+            accessToken: res.data.accessToken,
+            refreshToken: res.data.refreshToken,
+            phone,
+            expiresIn: res.data.expiresIn,
+          })
+        )
         setStep('success')
         setTimeout(() => {
-          router.push('/')
+          router.push(redirectTarget)
           router.refresh()
-        }, 1500)
+        }, 1200)
       } else {
         const message =
           typeof res.error === 'object' ? res.error.message : res.error
@@ -103,16 +115,16 @@ export function LoginForm() {
               Login Berhasil!
             </h2>
             <p className={styles.description}>
-              Selamat datang di PromoRush. Mengarahkan Anda ke flash sale...
+              Selamat datang di PromoRush. Mengarahkan Anda ke Dashboard...
             </p>
             <Button
               className={styles.submit}
               onClick={() => {
-                router.push('/')
+                router.push(redirectTarget)
                 router.refresh()
               }}
             >
-              Lanjut ke Flash Sale
+              Lanjut ke Dashboard
               <Icon name="arrow_forward" className={styles.arrow} />
             </Button>
           </div>
