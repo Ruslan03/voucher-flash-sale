@@ -42,28 +42,30 @@ async function request<T>(url: string, options: HttpRequestOptions = {}): Promis
     signal: AbortSignal.timeout(timeout),
   })
 
+  let responseData: unknown = undefined
+  if (res.status !== 204) {
+    try {
+      responseData = await res.json()
+    } catch {
+      // not JSON or empty body
+    }
+  }
+
   console.log(`[HTTP Response] ${method} ${url}`, {
-    body: await res.json(),
+    status: res.status,
+    body: responseData ?? null,
   })
 
   if (!res.ok) {
-    let errorData: unknown
-    try {
-      errorData = await res.json()
-    } catch {
-      // ignore
-    }
-
     console.warn(`[HTTP Response Error] ${method} ${url} -> ${res.status} ${res.statusText}`, {
       status: res.status,
-      errorData,
+      errorData: responseData,
     })
 
-    throw new HttpError(res.status, res.statusText, url, errorData)
+    throw new HttpError(res.status, res.statusText, url, responseData)
   }
 
-  if (res.status === 204) return undefined as T
-  return res.json()
+  return responseData as T
 }
 
 export const httpClient = {
