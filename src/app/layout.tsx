@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   description: 'High-velocity Indonesian flash-sale marketplace built with Next.js Clean Architecture',
 }
 
+const isDevToolsEnabled =
+  process.env.NODE_ENV === 'development' ||
+  process.env.NEXT_DEVTOOLS_ENABLED === 'true'
+
 export default function RootLayout({
   children,
 }: {
@@ -28,7 +32,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#f8f9fa] text-[#14213d] font-sans">
         <RootProvider>{children}</RootProvider>
-        {process.env.NODE_ENV === 'development' && <NextDevTools />}
+        {isDevToolsEnabled && <NextDevTools enabled={true} />}
       </body>
     </html>
   )
