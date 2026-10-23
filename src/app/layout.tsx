@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { RootProvider } from '@/composition/store/provider'
+import { NextDevTools } from 'next-devtools-widget'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta',
@@ -27,6 +28,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#f8f9fa] text-[#14213d] font-sans">
         <RootProvider>{children}</RootProvider>
+        {process.env.NODE_ENV === 'development' && <NextDevTools />}
       </body>
     </html>
   )
